@@ -1,46 +1,62 @@
-## Description: <br>
-Set up a Bird Buddy smart feeder integration with Home Assistant that configures ha-birdbuddy, a camera entity, automations, a dashboard, and Telegram notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a Bird Buddy smart bird feeder integration with Home Assistant, including the ha-birdbuddy custom component, notification automations, a live camera entity, a dashboard, and Telegram routing.
 
-## Publisher: <br>
-[mykclawd](https://clawhub.ai/user/mykclawd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mykclawd](https://clawhub.ai/user/mykclawd)
 
-## Use Case: <br>
-Home Assistant users and smart-home developers use this skill to connect a Bird Buddy feeder to Home Assistant, add live or cached camera snapshots, import alert automations, and route selected notifications to Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup uses Bird Buddy, Home Assistant, and Telegram credentials that can expose account access if copied into public files, logs, or chats. <br>
-Mitigation: Store real tokens in Home Assistant secrets or another protected secret store, and avoid committing or pasting credentials into logs or chat transcripts. <br>
-Risk: Bird Buddy and Home Assistant events may be sent to Telegram, which can share household activity or feeder details outside Home Assistant. <br>
-Mitigation: Review each automation before enabling it and remove notification fields that should not be sent to Telegram. <br>
-Risk: Imported Home Assistant automations and configuration changes can affect existing dashboards, notification routing, and entity behavior. <br>
-Mitigation: Review the YAML, Python, and dashboard configuration before applying it, then test the integration in Home Assistant before relying on alerts. <br>
+## Use Case:
 
+External Home Assistant users and developers use this skill to integrate a Bird Buddy feeder with Home Assistant, add a camera entity, import automations, route feeder alerts to Telegram, and create a dedicated dashboard.
 
-## Reference(s): <br>
-- [ha-birdbuddy custom component](https://github.com/jhansche/ha-birdbuddy) <br>
-- [Camera entity reference](references/camera.py) <br>
-- [Automation templates](references/automations.yaml) <br>
-- [Telegram rest_command template](references/rest_commands.yaml) <br>
-- [Dashboard configuration](assets/dashboard_config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML, JSON, Python, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes placeholders for Home Assistant, Bird Buddy, and Telegram values that users should replace with protected secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The included camera component was flagged as having security issues around media URLs, session IDs, URL allowlisting, and response-size limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix camera.py before installation; add URL allowlisting and response-size limits, and avoid exposing media URLs or session IDs in entity attributes and logs.
+
+Risk: Home Assistant, Bird Buddy, and Telegram credentials may be exposed if pasted into shell history or plain configuration files.
+
+Mitigation: Store tokens only in Home Assistant secrets or another protected secret store, and rotate any token pasted into shell or configuration history.
+
+Risk: Telegram notifications can reveal household activity and feeder imagery links if sent to the wrong chat or topic.
+
+Mitigation: Verify the Telegram chat ID and message thread before enabling automations, and limit recipients to trusted users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mykclawd/skills/birdbuddy-homeassistant)
+- [ha-birdbuddy custom component](https://github.com/jhansche/ha-birdbuddy)
+- [camera.py](artifact/references/camera.py)
+- [automations.yaml](artifact/references/automations.yaml)
+- [rest_commands.yaml](artifact/references/rest_commands.yaml)
+- [dashboard_config.json](artifact/assets/dashboard_config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with Python, YAML, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Home Assistant setup guidance, a camera entity file, automation templates, Telegram rest_command configuration, and dashboard configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

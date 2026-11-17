@@ -1,6 +1,62 @@
 {
-  "ownerId": "kn747ar4bx69q64s4rnafc46e585f68m",
-  "slug": "sip-wine-food",
-  "version": "1.0.1",
-  "publishedAt": 1778661140335
+  "name": "sip-wine-food",
+  "displayName": "美酒与主打菜推荐",
+  "description": "Data access only via https://mcp.sipsiip.com/api (MCP session https://mcp.sipsiip.com/api/sippai). Business APIs live under api/sippai (restaurant search, wine list, dishes). Tools sippai_search_restaurants → sippai_get_restaurant_menus. Do not use alternate bases for the same data.",
+  "description_zh": "访问数据**统一**走 **`https://mcp.sipsiip.com/api`**，默认 MCP 入口 **`https://mcp.sipsiip.com/api/sippai`**。门店检索、酒菜等能力由 **`api/sippai`** 实现。不要在文档或宿主配置中再暴露其它域名或绕过 MCP 直连业务 REST。",
+  "version": "1.0.0",
+  "author": "sipsiip",
+  "homepage": "https://sipsiip.com",
+  "license": "MIT",
+  "requires_api_key": "conditional",
+  "category": "productivity",
+  "tags": [
+    "wine",
+    "food",
+    "featured-dish",
+    "restaurant",
+    "sippai",
+    "mcp",
+    "api-mcp-only",
+    "mcp.sipsiip.com",
+    "bottle-wine",
+    "glass-wine",
+    "sipsiip"
+  ],
+  "when_to_use": [
+    "用户问门店酒或菜/主推菜",
+    "宿主已指向 https://mcp.sipsiip.com/api/sippai"
+  ],
+  "when_not_to_use": [
+    "需要用其它域名或未通过 MCP 网关的直连 REST 替代本工具链",
+    "无法使用 mcp.sipsiip.com/api 网关的环境"
+  ],
+  "keywords": [
+    "mcp.sipsiip.com",
+    "瓶卖",
+    "杯卖",
+    "酒单",
+    "主打菜",
+    "MCP"
+  ],
+  "mcp_gateway": {
+    "public_gateway_base": "https://mcp.sipsiip.com/api",
+    "public_mcp_url": "https://mcp.sipsiip.com/api/sippai",
+    "backend_implementation": "api/sippai",
+    "tools": ["sippai_search_restaurants", "sippai_get_restaurant_menus"]
+  },
+  "examples": {
+    "user_says": "这家店杯卖有哪些？再给几道主推菜。",
+    "steps": [
+      {
+        "call": "sippai_search_restaurants",
+        "params": { "keyword": "用户提到的店名" },
+        "note": "经 MCP（https://mcp.sipsiip.com/api/sippai）；多结果让用户选 restaurantId"
+      },
+      {
+        "call": "sippai_get_restaurant_menus",
+        "params": { "restaurantId": "选定的 UUID" },
+        "note": "仅用返回字段；勿改用其它 API 基址"
+      }
+    ]
+  }
 }

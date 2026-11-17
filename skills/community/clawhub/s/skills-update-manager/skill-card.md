@@ -1,41 +1,55 @@
-## Description: <br>
-管理已安装技能的注册、版本跟踪与自动更新检查；当用户安装新技能、检查技能更新或配置更新策略时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages installed skill registration, version tracking, update checks, and update policy configuration.
 
-## Publisher: <br>
-[chsengni](https://clawhub.ai/user/chsengni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chsengni](https://clawhub.ai/user/chsengni)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register installed skills, track versions, configure update checks, and review available updates before installing or updating skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist changes in a shared MEMORY.md file. <br>
-Mitigation: Inspect MEMORY.md after first use and keep update-check configuration explicit. <br>
-Risk: The skill can contact remote update URLs and guide clone or download update steps. <br>
-Mitigation: Provide only trusted update URLs and approve any clone or download step separately after reviewing the source. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register installed skills, track versions, configure update checks, and review available updates before installing or updating skills.
 
-## Reference(s): <br>
-- [Registry Format Reference](references/registry_format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chsengni/skills-update-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command snippets and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or updates of skills_registry.json and MEMORY.md configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can persistently change agent memory and installed-skill update records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review MEMORY.md and skills_registry.json changes before keeping them, and keep update checks disabled unless needed.
+
+Risk: The skill can contact or fetch updates from insufficiently constrained remote URLs.
+
+Mitigation: Review every update URL, register only trusted GitHub or ClawHub sources, and verify the exact version before cloning or downloading updates.
+
+## Reference(s):
+
+- [Registry Format Reference](artifact/references/registry_format.md)
+- [Skill Registry Script](artifact/scripts/skill_registry.py)
+- [ClawHub Skill Page](https://clawhub.ai/chsengni/skills/skills-update-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON status records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local skills_registry.json file and update MEMORY.md when actions are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

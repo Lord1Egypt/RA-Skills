@@ -1,37 +1,49 @@
-## Description: <br>
-Calculates informational estimates for major PRC/China taxes, including VAT, corporate income tax, individual income tax, land value-added tax, stamp tax, and scenario comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tax Calculator helps agents calculate major China taxes, including value-added tax, corporate income tax, individual income tax, land value-added tax, stamp duty, and multi-scenario tax burden comparisons.
 
-## Publisher: <br>
-[codefarmerman](https://clawhub.ai/user/codefarmerman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codefarmerman](https://clawhub.ai/user/codefarmerman)
 
-## Use Case: <br>
-External users, finance teams, and agents use this skill to estimate PRC/China tax liabilities and compare tax-planning scenarios. Outputs are informational and should be checked against current official guidance or a qualified tax professional for important decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax rates and rules can change, and simplified calculations may not capture all business-specific facts. <br>
-Mitigation: Treat outputs as informational estimates and verify important calculations against current official guidance or with a qualified tax professional. <br>
+## Use Case:
 
+External users and agents use this skill to estimate China-focused tax liabilities, compare planning scenarios, and prepare reference calculations for tax burden analysis. Results should be treated as planning support rather than authoritative tax advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tax calculations, comparison tables, and optional Python script execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Numeric estimates are rounded and depend on user-provided assumptions and current tax rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: China tax rates, thresholds, and transaction-specific assumptions may be outdated or incomplete for a user's situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current tax rates and material transaction assumptions against official guidance or a qualified tax professional before relying on the result.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codefarmerman/skills/tax-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text calculations, with optional shell commands for running the Python helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calculations are reference outputs and may include rounded currency amounts, tax rates, scenario tables, and effective tax burden comparisons.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

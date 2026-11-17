@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn79s6s4n5qvd0qjwrn3bt0pts81y47b",
-  "slug": "wall-street-quant-team",
-  "version": "1.0.1",
-  "publishedAt": 1774513665871
+  "id": "202642",
+  "version": "1.0.0",
+  "author": "MiniMax Agent",
+  "created": "2026-03-26",
+  "description": "华尔街级AI多代理量化投资团队技能"
 }

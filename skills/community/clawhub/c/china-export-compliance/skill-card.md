@@ -1,43 +1,56 @@
-## Description: <br>
-Helps AI agents assess China-focused export-control classification, license needs, technology-transfer limits, encryption export rules, and entity list screening for technology exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Chinese export control regulations and compliance requirements for technology companies.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers, product teams, and compliance reviewers use this skill to triage whether software, AI models, encryption, or other technology exports from China may need classification, licensing, screening, or legal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; focused on exports from China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: China export-control guidance can be jurisdiction-sensitive and may be incomplete for a specific product, origin, customer, or transaction. <br>
-Mitigation: Confirm jurisdiction, export origin, product classification, and applicable legal regime before relying on it; consult qualified export-control counsel for production decisions. <br>
-Risk: Security review noted unrelated third-party web-app promotion in the artifact. <br>
-Mitigation: Do not send confidential compliance, product, customer, shipment, or legal data to unrelated external web apps linked by the skill. <br>
-Risk: Broad legal-compliance triggers may invoke the skill outside its intended China export-control scope. <br>
-Mitigation: Use it only for China-focused export-control triage and route unrelated compliance questions to better-scoped guidance. <br>
+## Use Case:
 
+Developers, compliance teams, and technology companies use this skill to assess China export-control classification, dual-use item risks, technology-transfer restrictions, encryption export questions, entity-list screening, and export-license preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/china-export-compliance) <br>
-- [Project homepage](https://github.com/lm203688/china-compliance-skills-mirror) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and inline bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools or credentials are required; outputs should be reviewed by qualified export-control counsel before reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill promotes an unrelated third-party content-compliance web app without clear scope or data-handling disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the promoted web app before installation or use, and do not submit sensitive product, customer, or export-review details unless the operator and data-handling practices have been independently verified.
+
+Risk: Export-control guidance may be incomplete, outdated, or unsuitable for a specific transaction.
+
+Mitigation: Treat the skill output as general guidance and confirm current requirements with qualified counsel or official sources before making compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/china-export-compliance)
+- [Project homepage](https://github.com/lm203688/china-compliance-skills-mirror)
+- [china-data-compliance related skill](https://github.com/lm203688/china-compliance-skills-mirror/tree/main/skills/china-data-compliance)
+- [cn-global-compliance related skill](https://github.com/lm203688/china-compliance-skills-mirror/tree/main/skills/cn-global-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with structured checklists, tables, decision flows, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General guidance only; legal and compliance conclusions require review by qualified counsel or official sources.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

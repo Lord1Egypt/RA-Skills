@@ -1,46 +1,56 @@
-## Description: <br>
-Wraps the AKShare financial data library so agents can fetch fundamental, real-time, historical, and derivative financial data for stocks, futures, options, funds, foreign exchange, bonds, indexes, and cryptocurrencies. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Wraps the AKShare financial data library to help agents fetch public market, macroeconomic, and cryptocurrency data for research and analysis.
 
-## Publisher: <br>
-[codecanvas762](https://clawhub.ai/user/codecanvas762) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codecanvas762](https://clawhub.ai/user/codecanvas762)
 
-## Use Case: <br>
-Developers and analysts use this skill to install AKShare dependencies and have an agent generate examples or run helper scripts for market quotes, cryptocurrency prices, macroeconomic indicators, and financial data exploration. The artifact describes the data as intended for academic research and requiring independent verification before decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill installs AKShare and pandas from PyPI and allows AKShare to make external financial-data requests. <br>
-Mitigation: Review dependency installation and network access policy before deployment. <br>
-Risk: Market data may be delayed, incomplete, or unavailable from upstream public finance sources. <br>
-Mitigation: Verify important values against another source before analysis or decisions. <br>
-Risk: Financial outputs could be mistaken for trading or investment advice. <br>
-Mitigation: Treat outputs as informational and do not use them as the sole basis for automated trading or financial decisions. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to install AKShare dependencies, call common finance-data APIs, and retrieve public stock, macroeconomic, cryptocurrency, foreign exchange, and metals data for research workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codecanvas762/akshare-finance-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/codecanvas762) <br>
-- [AKShare documentation](https://akshare.akfamily.xyz/) <br>
-- [AKShare GitHub repository](https://github.com/akfamily/akshare) <br>
-- [Skill reference README](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; bundled helper scripts print JSON when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires akshare>=1.12 and pandas>=1.5; external data availability and freshness depend on upstream financial data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reaches external public finance-data services through AKShare, so provider availability, rate limits, or upstream API changes can affect results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, pin dependency versions for reproducible installs, handle returned errors, and verify important data against authoritative sources.
+
+Risk: Returned market data may be delayed, incomplete, or unsuitable for investment decisions.
+
+Mitigation: Use the skill for research and analysis only, cross-check material outputs with multiple sources, and do not treat results as financial advice.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/codecanvas762/skills/akshare-finance-1-0-0)
+- [AKShare documentation](https://akshare.akfamily.xyz/)
+- [AKShare GitHub repository](https://github.com/akfamily/akshare)
+- [Bundled AKShare reference quickstart](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; bundled helper scripts print JSON and AKShare APIs return Pandas DataFrames.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires akshare>=1.12 and pandas>=1.5; returned public market data may be delayed and should not be treated as financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

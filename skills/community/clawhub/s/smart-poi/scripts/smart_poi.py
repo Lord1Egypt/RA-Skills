@@ -2,17 +2,19 @@
 """
 景点智能推荐 - ClawHub技能脚本
 6个工具：景点搜索、景点附近酒店、景点交通、景点附近美食、火车票查询、机票查询
-数据源：飞猪旅行 + 高德地图，通过SCF代理调用
+数据源：途牛旅行 + 高德地图，通过SCF代理调用
 """
+import os
 import json
 import re
 import urllib.request
 import urllib.error
 
 # ============ 配置 ============
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
+TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
+TC_PROXY = "https://1439498936-7vqpkiipef.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TIMEOUT = 30
 
 _CITIES = [
@@ -26,24 +28,32 @@ _CITIES = [
 
 
 # ============ 代理调用 ============
-def _call_fliggy(rtype, params):
-    body = json.dumps({"type": rtype, "params": params}, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    req = urllib.request.Request(
-        FLIGGY_PROXY, data=body,
-        headers={"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN},
-        method="POST",
-    )
+def _call_tuniu(rtype, params):
+    """调用途牛SCF代理"""
+    url = TUNIU_PROXY
+    headers = {"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN}
+    body = {"type": rtype, "params": params}
+    data = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-            return json.loads(r.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        err = ""
-        try: err = e.read().decode("utf-8", errors="replace")[:300]
-        except: pass
-        return {"error": "proxy error " + str(e.code) + ": " + err}
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
     except Exception as e:
-        return {"error": "request error: " + str(e)}
+        return {"error": str(e)}
 
+
+def _call_tc(rtype, params):
+    """调用同程SCF代理"""
+    url = TC_PROXY
+    headers = {"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN}
+    body = {"type": rtype, "params": params}
+    data = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        return {"error": str(e)}
 
 def _call_gaode(api, params):
     body = json.dumps({"type": api, "params": params}).encode("utf-8")
@@ -366,10 +376,10 @@ def poi_search(params):
     if category: scf_params["category"] = category
     if level and int(level) > 0: scf_params["poiLevel"] = int(level)
 
-    result = _call_fliggy("search_poi", scf_params)
+    result = _call_tuniu("tuniu_ticket_query", scf_params)
     if isinstance(result, dict) and "error" in result:
         ai_query = keyword or city + "景点推荐"
-        result = _call_fliggy("fliggy_ai_search", {"query": ai_query, "limit": limit})
+        result = _call_tuniu("tuniu_ticket_query", {"query": ai_query, "limit": limit})
         text = _parse_flyai_text(result)
         return text + _build_tips("景点搜索", city, keyword or city)
 
@@ -404,7 +414,7 @@ def poi_hotel(params):
     if city: scf_params["cityName"] = city
     if hotel_kw: scf_params["keyword"] = hotel_kw
 
-    result = _call_fliggy("search_hotels", scf_params)
+    result = _call_tuniu("tuniu_hotel_search", scf_params)
     if isinstance(result, dict) and "error" not in result:
         inner = result.get("data", result)
         if isinstance(inner, dict):
@@ -415,7 +425,7 @@ def poi_hotel(params):
                 return text + _build_tips("酒店搜索", city)
 
     # 回退到 AI 文本搜索
-    result = _call_fliggy("fliggy_ai_search", {"query": query, "limit": limit})
+    result = _call_tuniu("tuniu_ticket_query", {"query": query, "limit": limit})
     text = _parse_flyai_text(result)
     return text + _build_tips("酒店搜索", city)
 
@@ -542,7 +552,7 @@ def poi_food(params):
 
 # ============ 工具5：火车票查询 ============
 def train_search(params):
-    """火车票查询：搜索飞猪平台火车票，返回车次、时间、票价和购票链接。"""
+    """火车票查询：搜索途牛平台火车票，返回车次、时间、票价和购票链接。"""
     origin = params.get("origin", "")
     destination = params.get("destination", "")
     dep_date = params.get("dep_date", "")
@@ -552,7 +562,7 @@ def train_search(params):
     if destination: scf_params["destination"] = destination
     if dep_date: scf_params["depDate"] = dep_date
 
-    result = _call_fliggy("search_domestic_train", scf_params)
+    result = _call_tuniu("tuniu_train_search", scf_params)
     if isinstance(result, dict):
         if "error" in result: return "搜索失败: " + result["error"]
         inner = result.get("data", result)
@@ -566,7 +576,7 @@ def train_search(params):
 
 # ============ 工具6：机票查询 ============
 def flight_search(params):
-    """机票查询：搜索飞猪平台机票，返回航班、时间、票价和购票链接。"""
+    """机票查询：搜索途牛平台机票，返回航班、时间、票价和购票链接。"""
     origin = params.get("origin", "")
     destination = params.get("destination", "")
     dep_date = params.get("dep_date", "")
@@ -578,7 +588,7 @@ def flight_search(params):
     if dep_date: scf_params["depDate"] = dep_date
     if back_date: scf_params["backDate"] = back_date
 
-    result = _call_fliggy("search_flight", scf_params)
+    result = _call_tuniu("tuniu_flight_search", scf_params)
     if isinstance(result, dict):
         if "error" in result: return "搜索失败: " + result["error"]
         inner = result.get("data", result)

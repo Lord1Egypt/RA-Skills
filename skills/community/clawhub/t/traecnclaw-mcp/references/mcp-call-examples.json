@@ -1,0 +1,86 @@
+{
+  "calls": [
+    {
+      "name": "open_workspace",
+      "tool": "traecn_open_workspace",
+      "arguments": { "path": "/absolute/path/to/repository" }
+    },
+    {
+      "name": "discover_models",
+      "tool": "traecn_list_models",
+      "arguments": {}
+    },
+    {
+      "name": "select_model",
+      "tool": "traecn_select_model",
+      "arguments": { "model": "GLM-5.2" }
+    },
+    {
+      "name": "send_repository_review",
+      "tool": "traecn_send_message",
+      "arguments": {
+        "message": "Review the current repository. Report findings first, ordered by severity."
+      }
+    },
+    {
+      "name": "explicit_task_check",
+      "tool": "traecn_get_task",
+      "arguments": { "taskId": "TASK_ID" }
+    },
+    {
+      "name": "diagnostic_task_trace",
+      "tool": "traecn_get_task",
+      "arguments": { "taskId": "TASK_ID", "detailLevel": "trace" }
+    },
+    {
+      "name": "list_general_settings",
+      "tool": "traecn_list_settings",
+      "arguments": { "section": "通用" }
+    },
+    {
+      "name": "toggle_auto_save",
+      "tool": "traecn_set_setting_toggle",
+      "arguments": { "section": "通用", "label": "Auto Save", "enabled": true }
+    },
+    {
+      "name": "select_conversation",
+      "tool": "traecn_select_conversation",
+      "arguments": { "conversationId": "solo:UmV2aWV3IEFQSQ" }
+    },
+    {
+      "name": "stop_visible_untracked_generation",
+      "tool": "traecn_stop_generation",
+      "arguments": {
+        "conversationId": "solo:UmV2aWV3IEFQSQ",
+        "acknowledgeUntrackedWork": true,
+        "reason": "The user asked to stop the generation visible in this conversation"
+      }
+    },
+    {
+      "name": "delete_inactive_conversation",
+      "tool": "traecn_delete_conversation",
+      "precondition": "Use only when the current user request explicitly names or unambiguously identifies this conversation for deletion; do not infer deletion from cleanup or maintenance intent.",
+      "warning": "Deletion is permanent, and the gateway cannot restore the conversation. Re-read the listed conversation ID and exact title before sending this call.",
+      "arguments": {
+        "conversationId": "solo:T2xkIHJldmlldw",
+        "expectedTitle": "Old review",
+        "acknowledgePermanentDeletion": true
+      }
+    },
+    {
+      "name": "answer_exceptional_question",
+      "tool": "traecn_answer_question",
+      "arguments": { "answer": "Review the current workspace changes" }
+    },
+    {
+      "name": "approve_exact_exceptional_command",
+      "tool": "traecn_decide_approval",
+      "arguments": {
+        "decision": "approve",
+        "expectedCommand": "git push origin main",
+        "acknowledgeRisk": true,
+        "reason": "The user explicitly requested publishing the current branch"
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work over SSH"
+  short_description: "Work safely over SSH with Git and Python envs"
+  default_prompt: "Use $work-over-ssh with an SSH server, absolute project path, environment selector, and task to inspect or modify a remote Git project."
+
+policy:
+  allow_implicit_invocation: true

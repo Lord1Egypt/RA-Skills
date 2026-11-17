@@ -1,0 +1,24 @@
+{
+  "name": "wenrun",
+  "version": "1.0.1",
+  "description": "文润 — 中文AI文本自然度优化与润色工具。检测并消除中文AI文本的模板化痕迹，让文字更像人写的。",
+  "author": "wwumit",
+  "categories": [
+    "writing",
+    "chinese",
+    "text"
+  ],
+  "keywords": [
+    "wenrun",
+    "文润",
+    "AI润色",
+    "去AI味",
+    "文本自然化",
+    "中文写作",
+    "humanize",
+    "text polishing",
+    "AI text",
+    "自然语言"
+  ],
+  "license": "MIT"
+}

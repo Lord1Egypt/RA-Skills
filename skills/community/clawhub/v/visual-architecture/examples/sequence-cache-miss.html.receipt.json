@@ -1,0 +1,59 @@
+{
+  "artifactKind": "html",
+  "generatedAt": "2026-09-01T00:41:51.918962+00:00",
+  "input": {
+    "bytes": 1391,
+    "path": "examples/sequence-cache-miss.json",
+    "sha256": "7f9f6bcc66a9920d23a918a0e728d63497a83eeec680b65bc88b76bd237bac66"
+  },
+  "mode": "sequence",
+  "output": {
+    "bytes": 11584,
+    "path": "examples/sequence-cache-miss.html",
+    "sha256": "20cb494ea0be68fb3ff7a89840ae725eaedebbbd15e3a11cc52294ae7a25422d"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "primary-data"
+      ],
+      "edges": 5,
+      "evidenceItems": 0,
+      "mode": "sequence",
+      "nodeKinds": [
+        "memory",
+        "service"
+      ],
+      "nodes": 5,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "api",
+              "response"
+            ]
+          }
+        ],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 92
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

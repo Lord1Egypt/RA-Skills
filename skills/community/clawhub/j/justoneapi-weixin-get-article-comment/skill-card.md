@@ -1,42 +1,56 @@
-## Description: <br>
-Call GET /api/weixin/get-article-comment/v1 for WeChat Official Accounts Article Comments through JustOneAPI with articleUrl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/weixin/get-article-comment/v1 for WeChat Official Accounts Article Comments through JustOneAPI with articleUrl.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve WeChat Official Accounts article comments from JustOneAPI by article URL for feedback analysis. It is intended for workflows that need commenter details, comment text, and timestamps from the documented endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required API token may be exposed through command lines, request URLs, or logs. <br>
-Mitigation: Use a low-scope token if available, avoid logging command lines or request URLs, and rotate the token if exposure is suspected. <br>
-Risk: Returned commenter details, comment text, and timestamps may contain personal information. <br>
-Mitigation: Treat returned data as potentially personal information and handle it according to the user's privacy, retention, and access-control requirements. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve WeChat Official Accounts article comments through JustOneAPI for feedback analysis, including commenter details, comment text, and timestamps.
 
-## Reference(s): <br>
-- [JustOneAPI API homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weixin_get_article_comment&utm_content=project_link) <br>
-- [ClawHub skill release](https://clawhub.ai/justoneapi/justoneapi-weixin-get-article-comment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON response payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and articleUrl; results may include commenter details, comment text, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token is sent as a URL query parameter and may be captured in request logs, browser history, monitoring systems, or shared error output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived, tightly scoped token, avoid sharing full request URLs or logs, and rotate the token if exposure is suspected.
+
+Risk: The endpoint returns commenter details, comment text, and timestamps that may create privacy or compliance obligations.
+
+Mitigation: Review data collection obligations before use, limit access to retrieved data, and retain only the fields needed for the feedback analysis task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-weixin-get-article-comment)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weixin_get_article_comment&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weixin_get_article_comment&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and an articleUrl query parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

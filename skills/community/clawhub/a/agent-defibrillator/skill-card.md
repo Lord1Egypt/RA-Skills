@@ -1,43 +1,58 @@
-## Description: <br>
-Watchdog that monitors an OpenClaw or similar AI agent gateway on macOS and restarts it when it crashes or runs a stale version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Watchdog that monitors your AI agent gateway and restarts it when it crashes. Triggers on "install defibrillator", "agent watchdog", "gateway monitor", "auto-restart agent", or "keep agent alive". macOS launchd service with optional Discord notifications.
 
-## Publisher: <br>
-[hazy2go](https://clawhub.ai/user/hazy2go) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hazy2go](https://clawhub.ai/user/hazy2go)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw or similar launchd-managed AI agent gateways use this skill to install and configure a watchdog that checks gateway health, restarts failed or stale processes, and provides optional Discord notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can fetch unpinned remote code before registering a persistent launchd service. <br>
-Mitigation: Review the files first, install from a pinned commit or trusted release, and use the bundled local defibrillator.sh or verify a checksum before launchd runs it. <br>
-Risk: The watchdog is designed to persist on macOS and restart the configured gateway automatically. <br>
-Mitigation: Install only when persistent automatic restart behavior is intended, verify the launchd label and interval, and use the documented launchctl and file-removal commands to stop or uninstall it. <br>
-Risk: Restart recovery can terminate orphaned gateway processes. <br>
-Mitigation: Confirm the gateway label and process name match the intended OpenClaw service before deployment, then monitor watchdog logs after installation. <br>
+## Use Case:
 
+Developers and operators use this skill to install and configure a macOS launchd watchdog that monitors an OpenClaw-style gateway, restarts it after crashes or stale versions, and optionally sends Discord notifications.
 
-## Reference(s): <br>
-- [Agent Defibrillator ClawHub page](https://clawhub.ai/hazy2go/agent-defibrillator) <br>
-- [Agent Defibrillator README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, verification, configuration, troubleshooting, and uninstall guidance for a macOS launchd watchdog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The installer can fetch changing remote code and install it as a persistent user-level background service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed local checkout and remove or disable the install.sh remote download path before installation.
+
+Risk: The README includes a curl-to-bash installation path.
+
+Mitigation: Avoid the curl-to-bash command and review the cloned files before running install.sh.
+
+Risk: The watchdog can restart OpenClaw, terminate matching gateway processes, and send optional Discord messages through the configured OpenClaw CLI.
+
+Mitigation: Install only when that behavior is intended, configure Discord explicitly, and review launchd service settings before enabling the service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hazy2go/skills/agent-defibrillator)
+- [Agent Defibrillator repository](https://github.com/hazy2go/agent-defibrillator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces macOS launchd setup, verification, configuration, log inspection, restart, and uninstall instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, released 2026-02-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

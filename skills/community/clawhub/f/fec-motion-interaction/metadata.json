@@ -1,22 +1,24 @@
 {
   "id": "fec-motion-interaction",
-  "name": "交互动效",
+  "name": "interactive effects",
   "category": "design-ui",
   "tags": [
     "motion",
+    "motion-intensity",
     "framer-motion",
     "gsap",
     "lottie",
     "reduced-motion"
   ],
-  "summary": "Frontend interaction motion strategy, tool selection, performance budgets, and accessible reduced-motion behavior.",
-  "version": "2.5.0",
+  "summary": "Context-aware frontend motion strategy, intensity selection, tool choice, performance budgets, and accessible reduced-motion behavior.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
   "keywords": [
     "design-ui",
     "motion",
+    "motion-intensity",
     "framer-motion",
     "gsap",
     "lottie",
@@ -32,7 +34,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when designing, implementing, or reviewing frontend interaction motion, page transitions, scroll animation, Framer Motion, GSAP, Lottie, CSS animation, motion intensity, animation performance, reduced-motion behavior, or cinematic but accessible UI motion. Do not use for SVG-only path drawing, Canvas/WebGL rendering, or ordinary hover states; Chinese triggers include 动效设计, 交互动效, 页面转场, 滚动动画, Framer Motion, GSAP.",
+  "description": "Use when designing, implementing, or reviewing frontend interaction motion, page transitions, scroll animation, Framer Motion, GSAP, Lottie, CSS animation, motion intensity, animation performance, reduced-motion behavior, or cinematic but accessible UI motion. Do not use for SVG-only path drawing, Canvas/WebGL rendering, or ordinary hover states; Chinese triggers include motion design, interactive effects, page transitions, scroll animation, Framer Motion, GSAP.",
   "source": "skills/fec-motion-interaction",
   "references": [
     "references/motion-patterns.md"

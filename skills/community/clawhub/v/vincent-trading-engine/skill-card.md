@@ -1,43 +1,58 @@
-## Description: <br>
-Strategy-driven automated trading for Polymarket and HyperLiquid, including trading strategies, stop-loss rules, take-profit rules, trailing stops, and automated strategy monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages automated trading strategies and protective trade rules for Polymarket and HyperLiquid through the Vincent CLI.
 
-## Publisher: <br>
-[glitch003](https://clawhub.ai/user/glitch003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glitch003](https://clawhub.ai/user/glitch003)
 
-## Use Case: <br>
-External developers and trading operators use this skill to create, activate, monitor, pause, and archive automated trading strategies and protective trade rules for Polymarket and HyperLiquid. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to manage live automated trading and place real trades with wallet or venue API credentials. <br>
-Mitigation: Use restricted wallet or API permissions, strict spend and position limits, and human approval wherever available before enabling live strategies. <br>
-Risk: Automated strategies and trade rules can continue running after activation and may act on changing market signals. <br>
-Mitigation: Test with minimal size or simulation first, monitor active strategies, and confirm pause, cancel, and archive procedures before deployment. <br>
-Risk: LLM and market-data driven monitoring can create unexpected cost or trading activity. <br>
-Mitigation: Verify the CLI package and version, monitor costs and event logs, and set conservative polling, wake-frequency, and exposure limits. <br>
+## Use Case:
 
+External users and developers use this skill to create, monitor, pause, archive, and inspect automated trading strategies and position protection rules. It helps agents prepare Vincent CLI commands and configuration for strategy drivers, thesis rules, trade limits, event review, and cost monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/glitch003/vincent-trading-engine) <br>
-- [Vincent homepage](https://heyvincent.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target the @vincentai/cli package and may require wallet or venue API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.69 (source: server release metadata) <br>
+Risk: The skill is intended for automated trading with wallet-linked authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use revocable, least-privilege trading keys, strict server-side trade limits, and explicit approval thresholds.
+
+Risk: The skill runs a mutable third-party CLI through npx.
+
+Mitigation: Prefer a pinned, vetted @vincentai/cli version or a preinstalled binary before use.
+
+Risk: Broad filesystem access could expose files beyond the required wallet reference and working directory.
+
+Mitigation: Run it in a confined environment and grant only the filesystem access needed for the wallet reference and active workspace.
+
+## Reference(s):
+
+- [Vincent Homepage](https://heyvincent.ai)
+- [ClawHub Skill Page](https://clawhub.ai/glitch003/skills/vincent-trading-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading strategy configuration, rule parameters, command examples, and status or log interpretation.]
+
+## Skill Version(s):
+
+1.0.69 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

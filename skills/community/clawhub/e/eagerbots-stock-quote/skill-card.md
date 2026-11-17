@@ -1,42 +1,60 @@
-## Description: <br>
-Get real-time stock, ETF, and crypto prices, compare tickers, and check market cap and volume using Yahoo Finance without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get real-time stock, ETF, and crypto prices. Compare tickers, check market cap and volume. Uses Yahoo Finance - no API key required.
 
-## Publisher: <br>
-[josephflu](https://clawhub.ai/user/josephflu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephflu](https://clawhub.ai/user/josephflu)
 
-## Use Case: <br>
-External users and developers use this skill to request current stock, ETF, and cryptocurrency quotes, compare multiple tickers, and view market status and basic market metrics from Yahoo Finance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested ticker symbols are sent to Yahoo Finance. <br>
-Mitigation: Use the skill only when sharing requested stock, ETF, or crypto ticker symbols with Yahoo Finance is acceptable. <br>
-Risk: Python dependencies are declared for runtime installation. <br>
-Mitigation: Pin and review dependencies in environments with stricter supply-chain controls. <br>
+## Use Case:
 
+Developers and external users use this skill to fetch current stock, ETF, and crypto quotes, compare multiple tickers, and inspect market state, volume, market cap, and 52-week range data.
 
-## Reference(s): <br>
-- [Common Tickers Quick Reference](references/common-tickers.md) <br>
-- [Project Homepage](https://github.com/josephflu/clawhub-skills) <br>
-- [ClawHub Skill Page](https://clawhub.ai/josephflu/eagerbots-stock-quote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with command examples and terminal-formatted quote tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs market data for user-requested ticker symbols; requested symbols are sent to Yahoo Finance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Ticker symbols requested by the user are sent to Yahoo Finance when quotes are fetched.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when sharing requested ticker symbols with Yahoo Finance is acceptable.
+
+Risk: Python dependencies are resolved at runtime when the command is run with uv.
+
+Mitigation: Pin and review dependency versions before use in stricter environments.
+
+Risk: Remote quote metadata is rendered in terminal Rich markup.
+
+Mitigation: Escape ticker and remote metadata before rendering in environments where terminal markup injection is a concern.
+
+## Reference(s):
+
+- [Common Tickers Quick Reference](references/common-tickers.md)
+- [ClawHub Skill Page](https://clawhub.ai/josephflu/skills/eagerbots-stock-quote)
+- [Publisher Profile](https://clawhub.ai/user/josephflu)
+- [Project Homepage](https://github.com/josephflu/clawhub-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text with Rich panel or comparison table output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches quote data from Yahoo Finance and can report not-found or fetch-failed ticker results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

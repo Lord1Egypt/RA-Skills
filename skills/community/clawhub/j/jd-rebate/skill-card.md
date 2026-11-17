@@ -1,42 +1,61 @@
-## Description: <br>
-京东返利 helps users handle rebate authorization and tutorials, convert supported product links into rebate links, search for rebate-eligible products, check balances, and confirm withdrawals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+京东返利帮助用户完成返利授权、识别淘宝、京东、拼多多商品链接、搜索商品，并返回后续可生成返利链接的商品结果。
 
-## Publisher: <br>
-[skyfile](https://clawhub.ai/user/skyfile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyfile](https://clawhub.ai/user/skyfile)
 
-## Use Case: <br>
-External shoppers use this skill to find rebate-eligible products, turn supported Taobao, JD, and Pinduoduo product links into rebate links, and manage account balance or withdrawal flows after WeChat authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill links WeChat/openId identity and local authorization state to rebate activity. <br>
-Mitigation: Install only if you trust the rebate backend and intentionally complete the authorization flow. <br>
-Risk: Product queries and product links can be sent to rebate services and to the configured LLM provider for intent recognition. <br>
-Mitigation: Avoid submitting sensitive text and use only trusted model-provider configuration. <br>
-Risk: A withdrawal can be submitted after the user prepares an amount and confirms with the expected confirmation phrase. <br>
-Mitigation: Review the amount and account state before confirming withdrawal requests. <br>
+## Use Case:
 
+External users use this skill to find rebate-capable products, convert supported shopping links into rebate results, complete WeChat authorization, check rebate balances, and confirm withdrawal requests.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/skyfile/jd-rebate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown user-facing responses with supporting JSON and shell-command execution paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes user messages through authorization/tutorial, link rebate, and product-search flows; script stdout is intended to be returned verbatim.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: The skill can submit withdrawal requests after chat confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review withdrawal flows before installation and require users to confirm withdrawal amounts before submitting requests.
+
+Risk: The skill stores WeChat identifiers locally and can generate links that include OpenID-bearing account details.
+
+Mitigation: Install only in trusted workspaces and limit access to local skill data files and generated account-detail links.
+
+Risk: The skill depends on a third-party rebate backend for authorization, balances, product search, link generation, and withdrawals.
+
+Mitigation: Use only if the rebate backend is trusted and monitor failures or unexpected responses before relying on returned rebate information.
+
+Risk: The skill may use a configured model API key during product-intent handling.
+
+Mitigation: Use a restricted model API key for the workspace where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skyfile/skills/jd-rebate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown user messages with optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product search results, rebate links, account balance details, and withdrawal confirmation messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

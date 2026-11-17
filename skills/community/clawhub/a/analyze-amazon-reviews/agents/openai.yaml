@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Review Analyzer"
+  short_description: "抓取并分析亚马逊评论，生成证据化的交互式 HTML 报告"
+  default_prompt: "使用 $analyze-amazon-reviews 深度分析一个亚马逊 ASIN 的评论，并生成中文 HTML 报告。"

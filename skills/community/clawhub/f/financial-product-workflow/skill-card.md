@@ -1,50 +1,63 @@
-## Description: <br>
-Helps financial product teams use an AI-assisted workflow for strategy, requirement analysis, product design, technical review, development follow-up, testing, launch operations, compliance checks, and tool-connected delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps financial product managers build an AI-assisted workflow for strategy, requirements analysis, product design, technical review, development follow-up, testing, launch, and operations.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-Financial product managers and delivery teams use this skill to structure financial product work from early strategy through launch operations, including PRDs, requirements, self-operation design, compliance checklists, and fallback documentation when integrations are unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow encourages connected business-tool writes such as creating issues, pages, notifications, branches, or other external records. <br>
-Mitigation: Use sandbox projects first and require manual approval before every external create, update, or send action. <br>
-Risk: Broad API tokens or workspace credentials could allow excessive access to Jira, Confluence, code hosting, analytics, or messaging systems. <br>
-Mitigation: Use least-privilege credentials scoped to the minimum project, space, repository, or channel required for the task. <br>
-Risk: Financial product work may involve regulated, customer, or confidential data. <br>
-Mitigation: Do not provide regulated, customer, or confidential financial data to integrations unless the organization has approved that data flow. <br>
+## Use Case:
 
+Financial product managers and product teams use this skill to plan, design, review, deliver, test, and operate financial products from 0 to 1 or through iteration. It provides structured prompts, compliance checklists, self-operation design guidance, and optional handoffs to work tools such as Jira and Confluence.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lj22503/financial-product-workflow) <br>
-- [Financial Product Workflow README](README.md) <br>
-- [Quickstart Guide](QUICKSTART.md) <br>
-- [Tool Support Guide](TOOLS_SUPPORT.md) <br>
-- [Compliance Checklist](references/compliance-checklist.md) <br>
-- [STAR Framework](references/star-framework.md) <br>
-- [Self-Operation Design](references/self-operation-design.md) <br>
-- [Tool Integration](references/tool-integration.md) <br>
-- [MBTI Mapping](references/mbti-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with structured checklists, templates, Mermaid diagrams, code snippets, shell commands, and integration fallback steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose external business-tool actions when configured; users should approve create, update, or send actions before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Installation guidance includes an unverified remote shell installer path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer direct prompt-template usage, or inspect and verify any installer before running it.
+
+Risk: Configured integrations may create, update, post, query, or send content in external work systems.
+
+Mitigation: Use least-privilege tokens, keep sensitive financial or customer data out of generated work items unless approved, and require explicit confirmation before external actions.
+
+Risk: Financial product workflow outputs may be mistaken for final compliance approval.
+
+Mitigation: Treat the built-in checklists as drafting aids and route product, marketing, data, and launch decisions through licensed compliance personnel.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/financial-product-workflow)
+- [Publisher Profile](https://clawhub.ai/user/lj22503)
+- [Compliance Checklist](references/compliance-checklist.md)
+- [STAR+ Compliance Framework](references/star-framework.md)
+- [Self-Operation Design Guide](references/self-operation-design.md)
+- [Tool Integration Guide](references/tool-integration.md)
+- [MBTI Mapping Reference](references/mbti-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, tables, checklists, Mermaid diagrams, prompt templates, shell snippets, configuration guidance, and external-tool links when integrations are configured.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fallback output is Markdown or plain text when external tools are not configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

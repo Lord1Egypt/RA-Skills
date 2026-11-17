@@ -51,7 +51,7 @@ Lowercase letters, digits, underscores, 3-63 characters.
 ### Step 1.2: Workspace (optional, auto-handled)
 
 ```bash
-aliyun aiworkspace list-workspaces --region <region> --page-size 100 --verbose true --user-agent AlibabaCloud-Agent-Skills
+aliyun aiworkspace list-workspaces --region <region> --page-size 100 --verbose true --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 **Logic**:
@@ -94,7 +94,7 @@ Enter number to select | 'n' next page | keyword filter | 'all' show all
 ```bash
 aliyun aiworkspace list-images --verbose true \
   --labels 'system.official=true,system.supported.eas=true' \
-  --page-size 50 --user-agent AlibabaCloud-Agent-Skills | \
+  --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq -r '.Images[] | "\(.ImageId)\t\(.Name)\t\(.Labels[] | select(.Key == "system.chipType") | .Value)"'
 ```
 
@@ -111,7 +111,7 @@ Enter number to select | 'n' next page | keyword filter
 
 **Query image chip type** (query immediately after selection, record CHIP_TYPE):
 ```bash
-aliyun aiworkspace get-image --image-id <image-id> --user-agent AlibabaCloud-Agent-Skills | \
+aliyun aiworkspace get-image --image-id <image-id> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq '{ChipType: (.Labels[] | select(.Key == "system.chipType") | .Value), ImageUri: (.Labels[] | select(.Key == "system.imageUri") | .Value)}'
 ```
 
@@ -199,7 +199,7 @@ See [Storage Mount Guide](storage-mount.md)
 ### Step 2.3: Startup Command
 
 ```bash
-aliyun aiworkspace get-image --image-id <image-id> --user-agent AlibabaCloud-Agent-Skills | jq -r '.EasConfig.script'
+aliyun aiworkspace get-image --image-id <image-id> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.EasConfig.script'
 ```
 
 **Logic**:
@@ -268,7 +268,7 @@ Filtering compatible instance types...
 
 ```bash
 # Assuming CHIP_TYPE variable obtained from image labels
-aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq -r --arg chip "$CHIP_TYPE" '
     .InstanceMetas[] | select(.IsAvailable == true) |
     if $chip == "GPU" then
@@ -285,13 +285,13 @@ aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Age
 
 **GPU image query** (chip type = GPU):
 ```bash
-aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq -r '.InstanceMetas[] | select(.IsAvailable == true and .GPUAmount > 0) | "\(.InstanceType)\t\(.GPUAmount)x\(.GPU)\t\(.CPU) cores\t\(.Memory)GB"'
 ```
 
 **CPU image query** (chip type = CPU):
 ```bash
-aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-machine-spec --region <region> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq -r '.InstanceMetas[] | select(.IsAvailable == true and .GPUAmount == 0) | "\(.InstanceType)\t-\t\(.CPU) cores\t\(.Memory)GB"'
 ```
 
@@ -312,10 +312,10 @@ Enter number to select | 'n' next page | keyword filter
 
 ```bash
 # MUST call: list all resource groups
-aliyun eas list-resources --region <region> --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-resources --region <region> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 
 # Query specific resource group details
-aliyun eas list-resources --region <region> --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas list-resources --region <region> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq -r '.Resources[] | "\(.ResourceId)\t\(.ResourceName)\t\(.GpuCount)\t\(.GpuUsed)\t\(.CpuCount)\t\(.CpuUsed)"'
 ```
 
@@ -356,7 +356,7 @@ Select (enter 1 or 2):
 
 ```bash
 # MUST call: list all gateways
-aliyun eas list-gateway --region <region> --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-gateway --region <region> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 **Display format**:
@@ -371,7 +371,7 @@ Enter number to select:
 
 **Get gateway VPC info**:
 ```bash
-aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-gateway --cluster-id cn-hangzhou --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq '{VpcId: .LoadBalancerList[0].VpcId, VSwitchIds: .LoadBalancerList[0].VSwitchIds}'
 ```
 
@@ -388,7 +388,7 @@ Enter number to select:
 
 **Select security group**:
 ```bash
-aliyun ecs describe-security-groups --biz-region-id cn-hangzhou --vpc-id <vpc-id> --user-agent AlibabaCloud-Agent-Skills
+aliyun ecs describe-security-groups --biz-region-id cn-hangzhou --vpc-id <vpc-id> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 See [Network Config](network-config.md)
@@ -520,19 +520,19 @@ EOF
 
 # Execute deployment (may take 1-2 minutes)
 # ⚠️ Do NOT use file:// prefix, use $(cat) to read file content
-aliyun eas create-service --region <region> --body "$(cat /tmp/eas_service.json)" --user-agent AlibabaCloud-Agent-Skills
+aliyun eas create-service --region <region> --body "$(cat /tmp/eas_service.json)" --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 **⚠️ Note**: Use `$(cat file)` to read file content for `--body`, do NOT use `file://` prefix (may cause JSON parsing errors)
 
-**⚠️ CRITICAL: If service with same name exists**: You MUST delete it first using `aliyun eas delete-service --cluster-id <region> --service-name <name> --user-agent AlibabaCloud-Agent-Skills`, wait for deletion to complete, then recreate following ALL steps (ListImages, describe-machine-spec, create-service, describe-service). NEVER just report the existing service status — you MUST always go through the full deployment workflow.
+**⚠️ CRITICAL: If a service with the same name already exists**: STOP and inform the user — e.g. "A service named `<name>` already exists (Status: `<status>`). Please choose a different name." Do NOT delete and recreate it, and do NOT reuse it. Deleting an existing service is destructive and must never be done automatically. Only proceed with the full deployment workflow (ListImages, describe-machine-spec, create-service, describe-service) once a non-conflicting service name is confirmed.
 
 ### Step 6.4: Wait for Service Ready
 
 ```bash
 for i in $(seq 1 6); do
   STATUS=$(aliyun eas describe-service --cluster-id cn-hangzhou --service-name <service-name> \
-    --user-agent AlibabaCloud-Agent-Skills | jq -r '.Status')
+    --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Status')
   case $STATUS in
     Running) echo "✅ Service ready"; break ;;
     Failed)  echo "❌ Service startup failed"; break ;;
@@ -578,7 +578,7 @@ See [Service Invocation Examples](service-invoke-examples.md)
 
 **Query events**:
 ```bash
-aliyun eas describe-service-event --cluster-id <region> --service-name <service-name> --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service-event --cluster-id <region> --service-name <service-name> --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | \
   jq -r '.Events[-3:][] | "[\(.Type)] \(.Reason): \(.Message)"'
 ```
 

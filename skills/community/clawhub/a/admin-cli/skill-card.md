@@ -1,41 +1,51 @@
-## Description: <br>
-Admin Cli helps an agent run privileged administrative commands to update an Arch Linux system, restart systemd services, and report OS status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line tool for performing system updates, restarting systemd services, and checking OS status with elevated privileges.
 
-## Publisher: <br>
-[fabglitch](https://clawhub.ai/user/fabglitch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fabglitch](https://clawhub.ai/user/fabglitch)
 
-## Use Case: <br>
-Developers and system administrators use this skill when they want an agent to help with routine Linux host administration tasks that require elevated privileges. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Privileged commands can update packages or restart services on the host. <br>
-Mitigation: Require explicit human approval before execution and run the skill only on hosts where these administrative actions are intended. <br>
-Risk: The restart-service command can affect arbitrary systemd services if unrestricted. <br>
-Mitigation: Limit which services may be restarted through agent or host policy and review the target service before restart. <br>
-Risk: The update workflow is specific to Arch pacman and may not be appropriate on other distributions. <br>
-Mitigation: Use it only on Arch-based systems or adapt the update command for the target operating system before enabling it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fabglitch/admin-cli) <br>
+## Use Case:
+
+Developers and system administrators use this skill to have an agent perform common Linux administration tasks, including package updates, systemd service restarts, and status checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can request privileged system updates or systemd service restarts.
+
+Mitigation: Install only on trusted machines, review each privileged command before authorizing it, and avoid production use without normal change-control review.
+
+Risk: The update command uses pacman and is therefore specific to systems that support that package manager.
+
+Mitigation: Confirm the target host uses pacman before authorizing update-system.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires elevated privileges for update and service restart workflows.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may require elevated privileges and user authorization before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

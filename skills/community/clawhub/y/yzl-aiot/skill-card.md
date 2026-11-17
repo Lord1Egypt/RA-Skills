@@ -1,41 +1,54 @@
-## Description: <br>
-Yzl Aiot lets agents read YZL-AIoT sensor data and send control commands to supported cloud-connected devices through the YZL open API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves YZL-AIoT device and sensor data and sends remote device-control commands through the YZL Open API.
 
-## Publisher: <br>
-[yzlkj](https://clawhub.ai/user/yzlkj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzlkj](https://clawhub.ai/user/yzlkj)
 
-## Use Case: <br>
-External users and device operators use this skill to inspect YZL-AIoT device status, retrieve soil moisture, temperature, level, and history data, and issue authorized control commands such as opening or closing supported valves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly open or close real valves from broad natural-language commands without a confirmation step. <br>
-Mitigation: Use it only with API keys scoped to authorized devices, verify the target device before issuing commands, and require operator confirmation for valve actions. <br>
-Risk: A broadly scoped YZLIOT_API_KEY could allow unintended access to sensor data or physical device control. <br>
-Mitigation: Store the API key only in the runtime environment and use the least-privileged key available for the intended device set. <br>
+## Use Case:
 
+Device operators and developers use the skill to check sensor readings and device history or send commands to authorized YZL-AIoT devices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yzlkj/yzl-aiot) <br>
-- [YZL open API endpoint](https://open.yzlkj.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and YZLIOT_API_KEY; outputs may reflect live device state and command results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Valve or switch commands can change physical devices without a separate confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before each control command and use only an authorized YZLIOT_API_KEY.
+
+Risk: The bundled repository-sync script can stage and push local files using developer tokens.
+
+Mitigation: Do not run sync.sh unless publishing is intended; first review every file that would be staged and pushed.
+
+## Reference(s):
+
+- [YZL Open API documentation](https://cn6l1w4yn0.apifox.cn)
+- [YZL-AIoT ClawHub release](https://clawhub.ai/yzlkj/skills/yzl-aiot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Plain-text device readings and command status, with API response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and an authorized YZLIOT_API_KEY.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata, artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

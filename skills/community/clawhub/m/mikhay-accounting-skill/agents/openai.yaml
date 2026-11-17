@@ -1,0 +1,4 @@
+interface:
+  display_name: "Accounting|记账"
+  short_description: "Chinese ledger with configurable accounts/categories, tags, assets, debt, wishlist, and statistics."
+  default_prompt: "Use this skill to import/export Chinese CSV/XLSX/JSON ledgers, store records by day or month shards, summarize tags and dual-basis spending with scripts, query included and excluded net worth, and analyze planned purchase wishlist pressure."

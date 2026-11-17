@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "baidu-hot-cn",
+  "name": "baidu-hot-cn",
   "version": "1.0.0",
-  "publishedAt": 1771668700357
+  "description": "百度热榜监控 | Baidu Hot Topics Monitor",
+  "author": "guohongbin-git",
+  "tags": ["baidu", "hot", "trending", "china", "search-engine", "chinese"]
 }

@@ -8,9 +8,10 @@
 
 ## 核心内容
 
-- **SDK 初始化**：dg-lightning-sdk 1.0.5 安装与 Spring Boot 集成
+- **SDK 初始化**：dg-lightning-sdk 1.0.6 安装与 Spring Boot 集成
 - **Factory 调用模式**：`Factory.Payment.Common()` 获取客户端
-- **支付类型**：微信/支付宝/银联 共 10 种 trade_type
+- **产品接入范围**：极速版官网正式列出微信、支付宝、银联共 9 个场景。
+- **API 枚举范围**：V4 下单参数表列出 10 个 `trade_type`，额外包含 `T_APP`；它是接口枚举能力，不包装成极速版正式第十场景。
 - **公共参数**：sys_id、product_id、req_seq_id 等
 - **错误码**：完整错误码速查表
 - **技术规范**：签名规则、异步通知、Webhook
@@ -19,7 +20,7 @@
 
 | 方面 | 聚合支付当前文档链路 | 托管支付 |
 |------|-------------------|---------|
-| SDK | dg-lightning-sdk 1.0.5 | dg-java-sdk 3.0.38 |
+| SDK | dg-lightning-sdk 1.0.6 | dg-java-sdk 3.0.41 |
 | 接入难度 | 低，Factory 模式 | 中，需手动构建 Request |
 | 支付渠道 | 微信/支付宝/银联直接聚合 | 统一收银台（H5/小程序） |
 | 适用场景 | 标准支付，快速上线 | 收银台托管，复杂业务 |

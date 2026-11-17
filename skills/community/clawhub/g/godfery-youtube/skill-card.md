@@ -1,45 +1,64 @@
-## Description: <br>
-Search YouTube videos, get channel info, fetch video details and transcripts using SkillBoss API Hub or yt-dlp fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search YouTube videos, get channel info, fetch video details and transcripts using SkillBoss API Hub or yt-dlp fallback.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers, researchers, and content analysts use this skill to search YouTube, inspect video and channel metadata, retrieve transcripts, and analyze transcript content through SkillBoss API Hub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send YouTube search terms, video identifiers, URLs, and transcript text to external services. <br>
-Mitigation: Use it only with content approved for those services, and confirm relevant data-handling terms before processing private, sensitive, or proprietary transcripts. <br>
-Risk: The skill requires a SkillBoss API key. <br>
-Mitigation: Store the key in an environment variable or local Clawdbot configuration, keep it out of source code, and avoid committing it to repositories. <br>
-Risk: The skill depends on third-party YouTube tooling and transcript availability. <br>
-Mitigation: Review dependency trust before installation and verify transcript accuracy before using transcript text for quotes, claims, or downstream decisions. <br>
+## Use Case:
 
+Developers, researchers, and content analysts use this skill to search YouTube, retrieve channel and video metadata, collect transcripts, and optionally analyze transcript text through SkillBoss API Hub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godferylindsay/godfery-youtube) <br>
-- [Publisher profile](https://clawhub.ai/user/godferylindsay) <br>
-- [SkillBoss API Hub](https://skillbossai.com) <br>
-- [youtube-mcp-server](https://github.com/ZubeidHendricks/youtube-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python snippets, configuration examples, video metadata, and transcript text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and third-party YouTube tooling; transcript availability and accuracy depend on source video captions and external service behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill installs and runs mutable third-party tooling such as youtube-mcp-server and yt-dlp.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin dependency versions, install in a virtual environment or container, and review packages before use.
+
+Risk: Transcript analysis examples can send full transcript text to SkillBoss API Hub.
+
+Mitigation: Do not process private, confidential, or sensitive transcript content unless external transmission to SkillBoss is intended and approved.
+
+Risk: The skill requires a SkillBoss API key.
+
+Mitigation: Provide the key through environment variables or local configuration and do not commit secrets to repositories.
+
+Risk: YouTube transcripts may be auto-generated or unavailable.
+
+Mitigation: Review transcript accuracy before quoting or using transcript-derived analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/godfery-youtube)
+- [SkillBoss API Hub](https://skillbossai.com)
+- [youtube-mcp-server](https://github.com/ZubeidHendricks/youtube-mcp-server)
+- [Clawdbot](https://clawdbot.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command and code examples; tool results may include video metadata, transcripts, and analysis text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can depend on external YouTube, SkillBoss API Hub, youtube-mcp-server, and yt-dlp availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

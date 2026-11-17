@@ -1,41 +1,62 @@
-## Description: <br>
-Tracks household income, expenses, transfers, balances, and monthly summaries in a local SQLite ledger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Family Account Book 家庭财务记账 records household income, expenses, transfers, balances, and monthly summaries in a local SQLite account book.
 
-## Publisher: <br>
-[silent404](https://clawhub.ai/user/silent404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silent404](https://clawhub.ai/user/silent404)
 
-## Use Case: <br>
-External users and household finance maintainers use this skill to record transactions, inspect account balances, generate monthly summaries, and manage transfers across predefined household accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently store and display sensitive household financial records in a local SQLite database. <br>
-Mitigation: Confirm the database location, access controls, and correction or deletion process before relying on the ledger. <br>
-Risk: Broad natural-language triggers could cause income, expense, transfer, or ledger initialization actions when the user's intent is ambiguous. <br>
-Mitigation: Require explicit confirmation before executing commands that add transactions, transfer funds between ledger accounts, or initialize a database. <br>
+## Use Case:
 
+External users and agents use this skill to maintain household financial records, including adding income or expense entries, checking account balances, producing monthly summaries, and recording transfers between accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/silent404/keep-accounts) <br>
-- [Family finance database reference](artifact/references/finance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and local SQLite query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read from or write to a local SQLite finance database when the generated shell commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill can persistently change local household finance records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before add, transfer, initialization, or account-affecting actions.
+
+Risk: Natural-language account selection and fuzzy matching can post entries to the wrong account.
+
+Mitigation: Prefer account IDs over fuzzy account names before writing transactions.
+
+Risk: Finance records may become inaccurate if data is lost or transfers are only partially recorded.
+
+Mitigation: Keep database backups and review transfer entries before relying on reports.
+
+Risk: The current implementation is not suitable as an authoritative financial ledger.
+
+Mitigation: Use it for household tracking only until amount validation, ledger scoping, and atomic transfer handling are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/silent404/skills/keep-accounts)
+- [家庭财务数据库参考文档](artifact/references/finance.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and local SQLite query or update output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persistently create or update a local household finance SQLite database when the agent executes the provided commands.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

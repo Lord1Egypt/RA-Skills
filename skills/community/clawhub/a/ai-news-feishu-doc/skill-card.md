@@ -1,42 +1,61 @@
-## Description: <br>
-Generates a Markdown AI news digest from configured RSS feeds, with keyword ranking, short summaries, language grouping, and media previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an AI industry morning briefing as a Markdown document from configured RSS feeds.
 
-## Publisher: <br>
-[swordman20](https://clawhub.ai/user/swordman20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swordman20](https://clawhub.ai/user/swordman20)
 
-## Use Case: <br>
-Developers and content operators use this skill to collect AI industry updates from configured RSS feeds and generate a structured daily Markdown report for review or publication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches external RSS feeds and includes third-party article text, links, and image URLs in the generated report. <br>
-Mitigation: Review the RSS feed list before use and treat generated article content, links, and images as untrusted third-party material. <br>
-Risk: The cron example can schedule recurring external feed fetching and local report generation. <br>
-Mitigation: Enable scheduled execution only when daily automated fetching is intended and the runtime environment is appropriate. <br>
-Risk: Runtime dependencies must be available for the script to parse YAML configuration. <br>
-Mitigation: Install dependencies such as PyYAML from trusted package sources before running the script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/swordman20/ai-news-feishu-doc) <br>
-- [RSS feed configuration](assets/ai-news-rss.yaml) <br>
+## Use Case:
 
+Developers and operators use this skill to collect AI news from configured Chinese and English RSS feeds, prioritize keyword matches, and produce a daily Markdown briefing that can be scheduled through OpenClaw cron.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown file generated from configured RSS feed content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a dated local AI news report and prints fetch and article-count status to the console.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts configured RSS providers and creates local Markdown files.
+
+Mitigation: Review the RSS configuration before use and run the skill only where those outbound requests and file writes are expected.
+
+Risk: Generated briefings contain untrusted internet content and may include remote image embeds.
+
+Mitigation: Review generated Markdown before sharing it and disable or review remote images in Markdown viewers.
+
+Risk: The documented cron setup can run the generator unattended every day.
+
+Mitigation: Add the cron schedule only when unattended daily runs are intended, and monitor the generated output location.
+
+Risk: The script depends on PyYAML.
+
+Mitigation: Install PyYAML in an isolated environment with a pinned version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swordman20/skills/ai-news-feishu-doc)
+- [RSS feed configuration](artifact/assets/ai-news-rss.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration]
+
+**Output Format:** [Markdown file with headings, article summaries, source links, and optional remote image embeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes AI早报_<date>.md under the skill's scripts directory; article count and sources are controlled by assets/ai-news-rss.yaml.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

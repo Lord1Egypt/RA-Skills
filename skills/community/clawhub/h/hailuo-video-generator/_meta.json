@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7bcd1pq283np4x3k3f8q2tc982est6",
-  "slug": "hailuo-video-generator",
+  "name": "hailuo-video",
   "version": "1.0.0",
-  "publishedAt": 1772989484709
+  "description": "MiniMax Hailuo 视频生成技能 - S2V-01 主体参考视频生成",
+  "author": "Snail",
+  "homepage": "https://platform.minimax.com",
+  "tags": ["minimax", "hailuo", "video", "generation", "ai", "s2v"]
 }

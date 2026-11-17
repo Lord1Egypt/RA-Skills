@@ -1,0 +1,26 @@
+# The venv and the browser profiles live outside this folder, but be explicit:
+.venv/
+venv/
+
+# Harvested datasets never belong in the skill folder.
+dataset/
+datasets/
+*.dataset/
+
+# Agent handoff notes: internal working material, never published.
+handoff/
+
+# Local artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Credentials. Everything comes from the environment, but be explicit.
+.env
+*.key
+*.pem
+
+# OS noise
+.DS_Store
+Thumbs.db

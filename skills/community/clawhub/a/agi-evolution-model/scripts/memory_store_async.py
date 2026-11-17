@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 记忆存储异步实现
 
@@ -14,6 +20,10 @@ from typing import Dict, Optional, List, Any
 from dataclasses import dataclass, asdict
 from datetime import datetime
 from pathlib import Path
+from interfaces import TraceContext, create_trace_context
+from metrics_collector import MetricsCollector
+from health_checker import HealthChecker
+from validation_framework import ValidationError, validate_params, validate_params
 
 # 异步文件I/O依赖
 try:

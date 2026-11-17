@@ -1,42 +1,51 @@
-## Description: <br>
-Helps developers explore, compare, and build with AI agent skill frameworks including Anthropic agent-skills, OpenAI Agents SDK, LangGraph, CrewAI, and MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered assistant for exploring, understanding, and building with AI agent skills frameworks — covers Anthropic agent-skills, OpenAI agent SDKs, LangChain tools, CrewAI protocols, and open-source agent skill marketplaces. Built for AI developers and agent builders. Keywords: agent-skills, AI agent framework, LangChain tools, CrewAI, OpenAI Agents SDK, Claude Agent SDK, agent tool ecosystem, skills marketplace, MCP tools, n8n agent nodes, agent protocol.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers and agent builders use this skill to compare agent frameworks, choose tool-integration approaches, design multi-agent workflows, and find starter patterns for MCP, CrewAI, LangGraph, OpenAI Agents SDK, Claude Agent SDK, and agent-skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied setup examples may install packages or run integration commands. <br>
-Mitigation: Review package sources, command effects, repository names, and environment-specific values before execution. <br>
-Risk: Examples reference credentials and write-capable operations such as creating GitHub issues or sending Slack messages. <br>
-Mitigation: Use scoped environment variables, avoid hardcoded tokens, and test write-capable integrations in non-production targets first. <br>
+## Use Case:
 
+Developers and agent builders use this skill to compare and select agent frameworks, plan tool integrations and migrations, and understand agent protocols and skill marketplaces.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gechengling/agent-skills-framework-explorer) <br>
-- [agent-skills repository](https://github.com/addyosmani/agent-skills) <br>
-- [Model Context Protocol documentation](https://modelcontextprotocol.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code blocks and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include framework recommendations, example commands, setup configuration, and security notes for credentials or write-capable integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security evidence marks the skill suspicious: its partial scan reports an undisclosed GitHub issue creation capability and installer commands without pinned versions; scanning was incomplete and references were unresolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full skill and referenced integrations before installation; require human confirmation and a narrowly scoped token for any issue creation, and resolve installer placeholders to reviewed, pinned versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/agent-skills-framework-explorer)
+- [agent-skills repository](https://github.com/addyosmani/agent-skills)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with comparison tables, recommendations, examples, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory drafts for human review; framework and ecosystem details should be checked against current official sources.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

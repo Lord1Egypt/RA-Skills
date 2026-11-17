@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<ruleset name="Java Quality Ruleset (PMD 7)"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        自研 Java 质量规则集。
+        由 PMD 7 内置规则（调参映射，41 条）+ XPath 自定义规则（5 条，含 3 条 Spring 框架层反模式）组成。
+        纯注释规约（ali-comment）与需复杂数据流的规则不收录（后者由 SpotBugs 层覆盖）。
+        priority 语义：1=Blocker(bug/事故) 2=Critical(高风险) 3=Major(规范) 4/5=Minor(风格)。
+    </description>
+
+    <!-- ============ 一、异常处理 ============ -->
+
+    <!-- 空 catch 吞异常 -->
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
+        <priority>1</priority>
+    </rule>
+    <!-- catch 泛型异常/Throwable（AvoidCatchingThrowable 已废弃，用本规则；7.x 位于 design 分类） -->
+    <rule ref="category/java/design.xml/AvoidCatchingGenericException">
+        <priority>2</priority>
+    </rule>
+    <!-- finally 中 return，会吞掉 try 块异常 -->
+    <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock">
+        <priority>1</priority>
+    </rule>
+    <!-- finally 中 throw -->
+    <rule ref="category/java/errorprone.xml/DoNotThrowExceptionInFinally">
+        <priority>1</priority>
+    </rule>
+    <!-- 异常链丢失：catch 后抛新异常未带原始异常 -->
+    <rule ref="category/java/bestpractices.xml/PreserveStackTrace">
+        <priority>2</priority>
+    </rule>
+    <!-- 抛出裸 RuntimeException/Exception/Throwable -->
+    <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
+        <priority>3</priority>
+    </rule>
+
+    <!-- ============ 二、并发 ============ -->
+
+    <!-- 静态/共享 SimpleDateFormat 等 Format 非线程安全 -->
+    <rule ref="category/java/multithreading.xml/UnsynchronizedStaticFormatter">
+        <priority>1</priority>
+    </rule>
+    <!-- 直接调用 Thread.run() 而非 start() -->
+    <rule ref="category/java/multithreading.xml/DontCallThreadRun">
+        <priority>2</priority>
+    </rule>
+    <!-- 双重检查锁（未 volatile 有可见性问题） -->
+    <rule ref="category/java/multithreading.xml/DoubleCheckedLocking">
+        <priority>1</priority>
+    </rule>
+    <!-- ThreadGroup 已过时且线程不安全 -->
+    <rule ref="category/java/multithreading.xml/AvoidThreadGroup">
+        <priority>3</priority>
+    </rule>
+
+    <!-- ============ 三、金额/日期 ============ -->
+
+    <!-- new BigDecimal(double) 精度陷阱 -->
+    <rule ref="category/java/errorprone.xml/AvoidDecimalLiteralsInBigDecimalConstructor">
+        <priority>1</priority>
+    </rule>
+
+    <!-- ============ 四、常量与魔法值 ============ -->
+
+    <!-- 重复字符串字面量应抽常量 -->
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+        <priority>3</priority>
+    </rule>
+    <!-- if 条件中的魔法值 -->
+    <rule ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition">
+        <priority>3</priority>
+    </rule>
+
+    <!-- ============ 五、OOP 规约 ============ -->
+
+    <!-- @Override 必加（降 Major：标注遗漏不应阻塞交付） -->
+    <rule ref="category/java/bestpractices.xml/MissingOverride">
+        <priority>3</priority>
+    </rule>
+    <!-- equals/hashCode 必须成对重写 -->
+    <rule ref="category/java/errorprone.xml/OverrideBothEqualsAndHashcode">
+        <priority>1</priority>
+    </rule>
+    <!-- 对象引用用 equals 比较而非 == -->
+    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals">
+        <priority>2</priority>
+    </rule>
+    <!-- 字符串用 == 比较 -->
+    <rule ref="category/java/errorprone.xml/UseEqualsToCompareStrings">
+        <priority>1</priority>
+    </rule>
+    <!-- 相等判断常量在前防 NPE -->
+    <rule ref="category/java/bestpractices.xml/LiteralsFirstInComparisons">
+        <priority>2</priority>
+    </rule>
+    <!-- Serializable 类缺 serialVersionUID -->
+    <rule ref="category/java/errorprone.xml/MissingSerialVersionUID">
+        <priority>3</priority>
+    </rule>
+    <!-- getter 直接返回内部数组，破坏封装 -->
+    <rule ref="category/java/bestpractices.xml/MethodReturnsInternalArray">
+        <priority>3</priority>
+    </rule>
+    <!-- 构造/方法直接存储传入数组引用 -->
+    <rule ref="category/java/bestpractices.xml/ArrayIsStoredDirectly">
+        <priority>3</priority>
+    </rule>
+    <!-- 方法返回 null 而非空集合，调用方须额外判空（NPE 高频根因） -->
+    <rule ref="category/java/errorprone.xml/ReturnEmptyCollectionRatherThanNull">
+        <priority>2</priority>
+    </rule>
+
+    <!-- ============ 六、控制语句 ============ -->
+
+    <!-- switch 必有 default（sealed 穷尽检查除外，PMD 会自动放行） -->
+    <rule ref="category/java/bestpractices.xml/NonExhaustiveSwitch">
+        <priority>2</priority>
+    </rule>
+    <!-- if/else/for/while 必须使用大括号 -->
+    <rule ref="category/java/codestyle.xml/ControlStatementBraces">
+        <priority>3</priority>
+    </rule>
+
+    <!-- ============ 七、资源与 IO ============ -->
+
+    <!-- Connection/Statement/ResultSet/Stream 等资源未关闭 -->
+    <rule ref="category/java/errorprone.xml/CloseResource">
+        <priority>1</priority>
+    </rule>
+
+    <!-- ============ 八、命名规约 ============ -->
+
+    <!-- 类名 UpperCamelCase；抽象类 Abstract/Base 开头；异常类 Exception 结尾 -->
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions">
+        <priority>3</priority>
+        <properties>
+            <property name="classPattern" value="[A-Z][a-zA-Z0-9]*"/>
+            <property name="abstractClassPattern" value="(Abstract|Base)[A-Z][a-zA-Z0-9]*"/>
+            <property name="interfacePattern" value="[A-Z][a-zA-Z0-9]*"/>
+            <property name="enumPattern" value="[A-Z][a-zA-Z0-9]*"/>
+            <property name="annotationPattern" value="[A-Z][a-zA-Z0-9]*"/>
+            <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]*(Utils?|Helper)"/>
+        </properties>
+    </rule>
+    <!-- 方法名 lowerCamelCase -->
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions">
+        <priority>3</priority>
+    </rule>
+    <!-- 字段名：实例字段 lowerCamelCase，常量 UPPER_SNAKE -->
+    <rule ref="category/java/codestyle.xml/FieldNamingConventions">
+        <priority>4</priority>
+    </rule>
+    <!-- 形参名 lowerCamelCase -->
+    <rule ref="category/java/codestyle.xml/FormalParameterNamingConventions">
+        <priority>4</priority>
+    </rule>
+    <!-- 局部变量名 lowerCamelCase -->
+    <rule ref="category/java/codestyle.xml/LocalVariableNamingConventions">
+        <priority>4</priority>
+    </rule>
+    <!-- 包名全小写 -->
+    <rule ref="category/java/codestyle.xml/PackageCase">
+        <priority>3</priority>
+    </rule>
+
+    <!-- ============ 九、安全（FindSecBugs 之外的源码级补充） ============ -->
+
+    <!-- 硬编码 IP -->
+    <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP">
+        <priority>3</priority>
+    </rule>
+    <!-- MessageDigest 作共享字段（非线程安全，应方法内局部创建） -->
+    <rule ref="category/java/bestpractices.xml/AvoidMessageDigestField">
+        <priority>2</priority>
+    </rule>
+
+    <!-- ============ 十、日志规约 ============ -->
+
+    <!-- System.out/err.print 用于调试，生产代码应用日志框架 -->
+    <rule ref="category/java/bestpractices.xml/SystemPrintln">
+        <priority>3</priority>
+    </rule>
+    <!-- e.printStackTrace() 应替换为日志框架记录 -->
+    <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
+        <priority>3</priority>
+    </rule>
+    <!-- 日志调用前应先检查级别（性能与安全：避免敏感信息拼入被禁用的日志） -->
+    <rule ref="category/java/bestpractices.xml/GuardLogStatement">
+        <priority>4</priority>
+    </rule>
+
+    <!-- ============ 十一、无用代码 ============ -->
+
+    <rule ref="category/java/bestpractices.xml/UnusedLocalVariable">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/codestyle.xml/UnnecessaryImport">
+        <priority>4</priority>
+    </rule>
+
+    <!-- ============ 十二、性能 ============ -->
+
+    <!-- 循环内字符串 += 拼接，应改用 StringBuilder.append -->
+    <rule ref="category/java/performance.xml/UseStringBufferForStringAppends">
+        <priority>3</priority>
+    </rule>
+
+    <!-- ============ 十三、XPath 自定义规则 ============ -->
+
+    <!-- 强制：禁用 Executors 创建线程池，须用 ThreadPoolExecutor 明确参数 -->
+    <rule name="AvoidExecutorsForThreadPool"
+          language="java"
+          message="禁止用 Executors 创建线程池（无界队列/线程会 OOM）；改用 new ThreadPoolExecutor 明确核心/最大线程数、有界队列与拒绝策略"
+          class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+        <priority>1</priority>
+        <properties>
+            <property name="xpath">
+                <value><![CDATA[
+//MethodCall[
+    @MethodName = ('newFixedThreadPool','newCachedThreadPool','newSingleThreadExecutor',
+                   'newScheduledThreadPool','newSingleThreadScheduledExecutor','newWorkStealingPool')
+    and TypeExpression/ClassType[@SimpleName='Executors']
+]
+                ]]></value>
+            </property>
+        </properties>
+        <example><![CDATA[
+// 反例
+ExecutorService pool = Executors.newFixedThreadPool(10);
+// 正例
+ExecutorService pool = new ThreadPoolExecutor(4, 8, 60L, TimeUnit.SECONDS,
+        new ArrayBlockingQueue<>(1000), new ThreadPoolExecutor.CallerRunsPolicy());
+        ]]></example>
+    </rule>
+
+    <!-- 建议：禁止显式 new Thread 裸起线程，应交线程池管理 -->
+    <!-- 本规则已移除：PMD XPath 无法可靠区分"业务代码裸起线程"与"ThreadFactory.newThread 内合法构造"，
+         产生 Critical 误报损害门禁可信度。替代方案：
+         1. 保留内置规则 DontCallThreadRun（防止 thread.run() 误用）
+         2. 在 02-pmd-rules.md 文档中人工提示"禁止 new Thread().start()" -->
+    <!--
+    <rule name="AvoidManualThreadCreation" ... />
+    -->
+
+    <!-- 强制：POJO 布尔属性禁 is 前缀（RPC/序列化解析错误） -->
+    <rule name="AvoidBooleanIsPrefixField"
+          language="java"
+          message="POJO 布尔属性禁用 is 前缀（如 isDeleted）；RPC/JSON 序列化反解析会丢字段，用 deleted/enabled/active。同样禁 getter 返回 Boolean(包装类型) 且方法名 is 前缀——primitive boolean 的 isXxx() 是标准 JavaBeans 约定不拦截"
+          class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+        <priority>2</priority>
+        <properties>
+            <property name="xpath">
+                <value><![CDATA[
+(: 字段声明：Boolean 或 boolean 类型，变量名 is 前缀 :)
+//FieldDeclaration[
+    ClassType[@SimpleName='Boolean'] or PrimitiveType[@Kind='boolean']
+]/VariableDeclarator/VariableId[
+    matches(@Name, '^is[A-Z]')
+]
+|
+(: getter 方法：返回 Boolean(包装类型)、0 参数、方法名 is 前缀。不拦截 primitive boolean isXxx()（标准 JavaBeans） :)
+//MethodDeclaration[
+    ClassType[@SimpleName='Boolean']
+    and not(FormalParameters/FormalParameter)
+    and matches(@Name, '^is[A-Z]')
+]
+                ]]></value>
+            </property>
+        </properties>
+        <example><![CDATA[
+// 反例
+private Boolean isDeleted;
+public Boolean isDeleted() { return this.deleted; }
+// 正例
+private Boolean deleted;
+public Boolean getDeleted() { return this.deleted; }
+// primitive boolean 的 isXxx() 不拦截（标准 JavaBeans 约定）
+private boolean active;
+public boolean isActive() { return this.active; }
+        ]]></example>
+    </rule>
+
+    <!-- ============ 十四、Spring 框架层反模式 ============ -->
+    <!-- 注：Spring 专项规则。陷阱来源见 spring-boot-dev 技能 references/12-pitfalls.md。
+         只收单点 AST 可判的（零误报）；自调用/跨文件 Bean 配置等语义级陷阱不收（高误报，详见 02-pmd-rules.md）。 -->
+
+    <!-- 强制：@Transactional 标 private/static/final 方法，代理失效 -->
+    <rule name="TransactionalOnNonProxyableMethod"
+          language="java"
+          message="@Transactional 标在 private/static/final 方法上，CGLIB/JDK 动态代理无法覆盖，事务不生效（静默失效无报错）。改为 public 非 final 非 static 方法"
+          class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+        <priority>1</priority>
+        <properties>
+            <property name="xpath">
+                <value><![CDATA[
+//MethodDeclaration[
+    ModifierList/Annotation[pmd-java:typeIs('org.springframework.transaction.annotation.Transactional')]
+    and (@Static = true() or @Final = true() or @Visibility = 'private')
+]
+                ]]></value>
+            </property>
+        </properties>
+        <example><![CDATA[
+// 反例
+@Transactional
+private void insert(User u) { }          // private：代理失效
+@Transactional
+public static void batchInsert() { }    // static：代理失效
+@Transactional
+public final void update(User u) { }    // final：CGLIB 无法覆盖
+// 正例
+@Transactional(rollbackFor = Exception.class)
+public void insert(User u) { }          // public 非 final 非 static
+        ]]></example>
+    </rule>
+
+    <!-- 强制：@Transactional 缺 rollbackFor，受检异常默认不回滚 -->
+    <rule name="TransactionalMissingRollbackFor"
+          language="java"
+          message="@Transactional 未指定 rollbackFor，受检异常（IOException/SQLException 等）默认提交不回滚（最隐蔽的事故源）。须显式 @Transactional(rollbackFor = Exception.class)"
+          class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+        <priority>2</priority>
+        <properties>
+            <property name="xpath">
+                <value><![CDATA[
+//MethodDeclaration/ModifierList/Annotation[
+    pmd-java:typeIs('org.springframework.transaction.annotation.Transactional')
+    and not(AnnotationMemberList/MemberValuePair[@Name='rollbackFor' or @Name='rollbackForClassName'])
+]
+                ]]></value>
+            </property>
+        </properties>
+        <example><![CDATA[
+// 反例（受检异常不回滚）
+@Transactional
+public void upload() throws IOException { throw new IOException("fail"); }  // 提交不回滚
+// 正例
+@Transactional(rollbackFor = Exception.class)
+public void upload() throws IOException { ... }
+        ]]></example>
+    </rule>
+
+    <!-- 建议：ListenableFuture（Spring 6 / SpringBoot 3.x 已 @Deprecated） -->
+    <rule name="AvoidDeprecatedListenableFuture"
+          language="java"
+          message="ListenableFuture 在 Spring 6 / SpringBoot 3.x 已 @Deprecated，改用 CompletableFuture"
+          class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value><![CDATA[
+//ClassType[pmd-java:typeIs('org.springframework.util.concurrent.ListenableFuture')]
+                ]]></value>
+            </property>
+        </properties>
+        <example><![CDATA[
+// 反例（SpringBoot 3.x 已废弃）
+public ListenableFuture<String> sendAsync() { ... }
+// 正例
+public CompletableFuture<String> sendAsync() { ... }
+        ]]></example>
+    </rule>
+
+</ruleset>

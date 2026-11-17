@@ -1,38 +1,51 @@
-## Description: <br>
-Build habits with streaks, reminders, and progress visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build habits with streaks, reminders, and progress visualization.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to create and maintain daily, weekly, or custom habits through conversation, including completion logging, streak review, reminders, and progress summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Habit names, completions, streaks, reminders, and archived history may reveal personal routines if local storage is exposed. <br>
-Mitigation: Install only when local storage of habit history is acceptable and avoid recording sensitive habit details. <br>
-Risk: Ambiguous completion messages may update the wrong habit. <br>
-Mitigation: Use clear habit-specific commands when logging completions, skips, pauses, or archive requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users use this skill to create daily, weekly, or custom habits, log completions through conversation, review streaks and progress, and set optional reminders.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Habit names, completion history, skips, and reminders may reveal personal routines.
+
+Mitigation: Keep habit data local as described by the artifact and avoid including sensitive routine details unless the user intentionally provides them.
+
+Risk: Broad trigger phrases can cause accidental habit logging or reminder changes from casual conversation.
+
+Mitigation: Confirm state-changing actions such as creating habits, logging completions, skipping days, archiving habits, or setting reminders before applying them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores habit names, completions, streaks, reminders, and archived habit history locally.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Conversational text and concise Markdown summaries for habit setup, completion logging, progress review, and reminder configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Habit data is described as stored locally; reminder and habit state changes should be clearly confirmed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

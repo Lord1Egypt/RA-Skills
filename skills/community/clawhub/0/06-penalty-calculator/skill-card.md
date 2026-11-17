@@ -1,40 +1,57 @@
-## Description: <br>
-Provides structured penalty recommendations and cited bases for merchant, pickup-station, and logistics-supplier violations under Taobao, Tmall, Cainiao, and relevant Chinese compliance rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps internal control reviewers evaluate confirmed Taobao/Tmall merchant, Cainiao station, and logistics supplier violations and draft penalty recommendations with cited rules and corrective actions.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Marketplace compliance, internal-control, and operations reviewers use this skill to draft penalty classifications, proposed actions, rule bases, and remediation requirements after violation facts have been confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Penalty recommendations may be incorrect, outdated, or based on incomplete facts. <br>
-Mitigation: Verify current platform rules, laws, contracts, and facts independently before relying on the recommendation. <br>
-Risk: Applying a recommendation directly could cause high-impact actions such as refunds, takedowns, account restrictions, supplier termination, external notices, or risk-score changes. <br>
-Mitigation: Require authorized human approval before any enforcement, external communication, or risk-record synchronization. <br>
+## Use Case:
 
+Internal control and compliance staff use this skill as decision support when they have confirmed violation facts and need a structured penalty recommendation, rule basis, severity grading, and remediation plan. It covers merchant, Cainiao station, and logistics supplier violations described in the skill evidence.
 
-## Reference(s): <br>
-- [ClawHub release page for 06 Penalty Calculator](https://clawhub.ai/nic-yuan/06-penalty-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown penalty recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafting and triage aid only; final enforcement decisions require independent verification and authorized approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; source skill frontmatter reports 1.7.0) <br>
+Risk: Penalty guidance may be wrong or outdated if platform rules, legal requirements, or the referenced docs are missing or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current platform rules, legal basis, and referenced policy docs before relying on any recommendation.
+
+Risk: The skill may recommend high-impact actions such as refunds, takedowns, supplier pauses, blacklisting, or legal escalation.
+
+Mitigation: Use the output as decision support only and require review by an authorized internal owner before action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/06-penalty-calculator)
+- [docs/GLOSSARY.md](docs/GLOSSARY.md)
+- [docs/INSUFFICIENCY-HANDLING.md](docs/INSUFFICIENCY-HANDLING.md)
+- [docs/RULE-UPDATE-SOP.md](docs/RULE-UPDATE-SOP.md)
+- [docs/LINKING-SOP.md](docs/LINKING-SOP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown-style penalty recommendation with sections for facts, severity grading, penalty rationale, remediation, and caveats.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language advisory output; decision-support only and subject to internal approval.]
+
+## Skill Version(s):
+
+1.7.0 (source: SKILL.md frontmatter); ClawHub release version 1.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

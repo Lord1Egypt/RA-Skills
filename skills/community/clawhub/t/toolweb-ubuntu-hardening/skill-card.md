@@ -1,43 +1,55 @@
-## Description: <br>
-Generates professional Linux security hardening configuration files for Ubuntu systems with customizable options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional Linux security hardening configuration files for Ubuntu systems with customizable options.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-System administrators, DevOps engineers, and security professionals use this skill to request Ubuntu hardening configuration drafts, option lists, and implementation summaries for servers and infrastructure baselines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests are sent to an external API and may include tracking identifiers. <br>
-Mitigation: Review request payloads before use and avoid sending sensitive identifiers or environment details that are not required. <br>
-Risk: Generated SSH, firewall, service, audit, or kernel changes may disrupt access or system behavior if applied blindly. <br>
-Mitigation: Review each generated change, test outside production, and keep rollback steps or console access available before applying it. <br>
+## Use Case:
 
+System administrators, DevOps engineers, and security professionals use this skill to generate Ubuntu hardening files for kernel settings, firewall rules, authentication policies, service hardening, and audit configuration. It supports infrastructure baselines and compliance-oriented preparation for CIS Benchmark and NIST 800-53 workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-ubuntu-hardening) <br>
-- [Ubuntu hardening API route](https://api.mkkpro.com/hardening/ubuntu) <br>
-- [Ubuntu hardening API docs](https://api.mkkpro.com:8128/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Code, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses containing generated configuration file entries, shell scripts, target paths, and implementation summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated Ubuntu hardening changes should be reviewed and tested before use on production systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and OpenAPI info.version) <br>
+Risk: Generated SSH, firewall, kernel, service, or audit settings may lock out administrators or disrupt workloads if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated file, test changes in staging, keep backups, and maintain rollback access before applying output to Ubuntu systems.
+
+Risk: Requests may include real user IDs or stable identifiers that are sent to an external API provider.
+
+Mitigation: Avoid sending real user IDs or stable identifiers unless that sharing is acceptable for the deployment.
+
+## Reference(s):
+
+- [Ubuntu Hardening Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-ubuntu-hardening)
+- [Ubuntu Hardening API Docs](https://api.mkkpro.com:8128/docs)
+- [Ubuntu Hardening API Route](https://api.mkkpro.com/hardening/ubuntu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses containing generated configuration file names, target paths, file contents, summaries, and compliance mappings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated hardening files are administrator-facing drafts and should be reviewed, tested, backed up, and staged before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

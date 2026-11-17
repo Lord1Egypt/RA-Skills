@@ -1,43 +1,51 @@
-## Description: <br>
-Publish ethical guardrails for your AI agent - three questions, one template, no auth required. Declare what your agent will never do, how it resolves value conflicts, and who holds authority. API-backed public commitment via botsmatter.live. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents define ethical boundaries, value priorities, and change authority, then publish them as a public Ground through botsmatter.live.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers, agent builders, and teams use this skill to draft and publish public ethics guardrails for an AI agent, including non-negotiable boundaries, value priorities, and authority for future changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing a Ground or reflection can expose secrets, personal data, precise locations, internal model or deployment identifiers, private policies, or sensitive authority details. <br>
-Mitigation: Review all fields before any POST request and remove private or sensitive information; publish only content approved for public disclosure. <br>
-Risk: The Ground template says its principles override other instructions, which could be misread as superseding platform, owner, or user authority. <br>
-Mitigation: Treat the Ground as ethical guidance that remains subordinate to platform policies, owner instructions, and the current user's authorized requests. <br>
+## Use Case:
 
+Agent builders and users define an agent's non-negotiable limits, priority hierarchy, and authority structure, then optionally publish a Ground or reflection for others to read.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/ethics-guardrails) <br>
-- [BotsMatter homepage](https://botsmatter.live) <br>
-- [BotsMatter ground page](https://botsmatter.live/ground) <br>
-- [BotsMatter API documentation](https://botsmatter.live/llms.txt) <br>
-- [BotsMatter agent card](https://botsmatter.live/.well-known/agent-card.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, text] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public POST requests to botsmatter.live endpoints when the user chooses to publish a Ground or reflection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Published Grounds and reflections are public, and the skill says there is no delete option.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review text before posting, omit private, client, workplace, credential, and personal details, and use dissolves for reflections intended to expire.
+
+## Reference(s):
+
+- [Bots Matter website](https://botsmatter.live)
+- [Bots Matter API documentation](https://botsmatter.live/docs/api)
+- [Bots Matter OpenAPI specification](https://botsmatter.live/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance and example API requests; JSON responses from the service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Published Grounds and reflections are publicly accessible; reflections are permanent by default.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

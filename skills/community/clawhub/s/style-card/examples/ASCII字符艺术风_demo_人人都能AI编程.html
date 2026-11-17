@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html data-page-node-id="5bsZLJoxngl9v7bchXiX9H" lang="zh-CN">
+<head data-page-node-id="pVF8QbDOoKbVqaX3tONEp7">
+<script data-page-node-id="hYcXvoReJGET0Eb8LnKXv5" src="/page/page_comm/inject.js"></script>
+<meta data-page-node-id="foSFw5ovOJCKRWK3bYXSSu" charset="UTF-8">
+<link data-page-node-id="g69Zp1AFoUMmY8QzLFZisg" href="https://fonts.googleapis.com" rel="preconnect">
+<link data-page-node-id="yhU0wPSsIU55j8Fxl9EeOX" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style data-page-node-id="peLyt0SMgn3kjF29hvLGcI" data-pnid-children="9Gb75QtD8kYDWsmK1qOUZF">
+/* ============================================================
+   html-base.css — style-card HTML 引擎强制底座
+   ============================================================ */
+:root {
+    --card-width: 1170px;
+    --card-height: 1560px;
+    --bg-page: #f5efe0;
+    --ink: #1a1a1a;
+    --accent: #e8b04b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+    width: var(--card-width);
+    height: var(--card-height);
+    overflow: hidden;
+    background: var(--bg-page);
+    color: var(--ink);
+    font-family: 'Noto Sans SC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+h1, h2, h3 { font-weight: 900; line-height: 1.25; }
+p, li { line-height: 1.6; }
+p, li, span { overflow-wrap: break-word; }
+.pixelated { image-rendering: pixelated; }
+.pixel-font { font-family: 'ZCOOL QingKe HuangYou', 'Noto Sans SC', sans-serif; letter-spacing: 0.02em; }
+.hand-font  { font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif; }
+::selection { background: transparent; }
+
+/* === 卡片覆盖变量（ASCII 字符艺术风）=== */
+:root {
+    --bg-page: #0D0D0D;        /* 近黑底 */
+    --card-width: 1080px;      /* 1:1 方形 */
+    --card-height: 1080px;
+    --fg: #33FF66;             /* 终端绿 */
+    --fg-dim: #1E8F3E;         /* 暗绿 */
+    --meta: #A0A0A0;           /* 灰 meta */
+    --accent: #FFB000;         /* 单强调色（仅 1 处）*/
+    --mono: 'JetBrains Mono', monospace;
+}
+
+.card {
+    background: var(--bg-page);
+    color: var(--fg);
+    font-family: var(--mono);
+    padding: 60px 70px;
+}
+
+/* 终端窗口框 */
+.term-frame {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--fg-dim);
+    display: flex;
+    flex-direction: column;
+}
+
+.term-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-bottom: 2px solid var(--fg-dim);
+    color: var(--meta);
+    font-size: 22px;
+}
+.term-dots span {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: var(--fg-dim);
+}
+.term-dots span:nth-child(1){ background: var(--accent); } /* 强调色唯一 1 处 */
+
+/* meta 命令行 */
+.meta-line {
+    padding: 18px 30px;
+    color: var(--meta);
+    font-size: 24px;
+    letter-spacing: 0.03em;
+}
+.meta-line .prompt { color: var(--fg); }
+
+/* 字符图形区（pre 保对齐）*/
+.ascii-art {
+    padding: 20px 30px 0;
+    text-align: center;
+}
+.ascii-art pre {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 30px;
+    line-height: 1.15;
+    color: var(--fg);
+    text-align: left;
+}
+
+/* 主标题：块状字符拼字 */
+.title {
+    padding: 28px 30px 0;
+    text-align: center;
+}
+.title pre {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 44px;
+    line-height: 1.1;
+    color: var(--fg);
+    letter-spacing: 0;
+}
+
+/* 分隔线 */
+.divider {
+    padding: 16px 30px;
+    text-align: center;
+    color: var(--fg-dim);
+    font-size: 26px;
+}
+
+/* 副题 */
+.subtitle {
+    padding: 6px 30px;
+    text-align: center;
+    color: var(--fg);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    letter-spacing: 0.05em;
+}
+
+/* 要点列表 */
+.points {
+    padding: 34px 60px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+.point {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 30px;
+    color: var(--fg);
+    line-height: 1.5;
+}
+.point .marker {
+    font-family: var(--mono);
+    color: var(--fg-dim);
+    flex-shrink: 0;
+}
+
+/* 底部 meta */
+.foot {
+    margin-top: auto;
+    padding: 24px 30px;
+    border-top: 1px solid var(--fg-dim);
+    color: var(--meta);
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.04em;
+}
+</style>
+</head>
+<body data-page-node-id="HnXE3Bu8SY6sLyFKPquIR5">
+<div data-page-node-id="PfVhZaTruHeNnFbQvP40Pb" class="card">
+  <div data-page-node-id="u6Gt6OQBCS7p9SdYCF8HBp" class="term-frame">
+    <!--pnid:oOuO64eFK5D3UqyrCLFElp--><!-- meta 命令行 -->
+    <div data-page-node-id="p7718802Xx34E7JiNm3fLM" class="term-titlebar">
+        <div data-page-node-id="xun2ncuxODyJaUo2Z8hCGD" class="term-dots"><span data-page-node-id="yikZbQ5QcTtTYg8qH66xCC"></span><span data-page-node-id="hOzKcb8drwdNL5Qm33HvAl"></span><span data-page-node-id="ZOroV3CRXzQ8aEngPiiuS3"></span></div>
+        <span data-page-node-id="VlgQCxIj64rHKYbnzjUeKH"><!--pnid:EOEZQ5PehEFIg2s65As25w-->bonnie@bazhahei — zsh — 80×24</span>
+    </div>
+    <div data-page-node-id="gXKIyZwOtHjL13cttbu1gC" class="meta-line"><span data-page-node-id="1AwASIaS1fl858YYbRRziX" class="prompt"><!--pnid:yrkjk4Uo58hRvegznKZY69-->$</span><!--pnid:Q8HzAFHjW1BXIYVFtj9wdq--> whoami — AI PRACTITIONER · VIBE CODER</div>
+
+    <!--pnid:Bp2A90h0vkENoNwXrdSdsI--><!-- 字符图形：终端 > 箭头 -->
+    <div data-page-node-id="R4iaQzMEcsVJseuKHZuKjp" class="ascii-art">
+<pre data-page-node-id="IPldVlEEajPQKjxe8Qh2IE" data-pnid-children="903NgnVxSSsOXp6K543p49">        ▄▄▄▄▄▄▄▄▄▄▄
+        █ ▓▓▓▓▓▓▓▓ █
+        █ ▓  AI  ▓ █
+        █ ▓▓▓▓▓▓▓▓ █
+        ▀▀▀▀▀▀▀▀▀▀▀
+            ██
+            ██
+            ██
+           █  █
+          █    █
+         █  ▄▄  █
+        █  █  █  █
+</pre>
+    </div>
+
+    <!--pnid:2xuZ8Fx9gJPZivoq2Ihe8W--><!-- 主标题：字符拼字「人人AI」-->
+    <div data-page-node-id="SjRjHP7cWDFrzreL2rt9nW" class="title">
+<pre data-page-node-id="vLpK0kGqeQsLcPpxQN3RZG" data-pnid-children="CCBCcvbwEp4Pp0ltYGBwEe">█▀█ █▀▀ █▄ █   █▀█ █▀▀
+█▀▄ █▀▀ █ ▀█   █▀█ █▀▀
+█ █ █▄▄ █  █   █ █ █▄▄
+</pre>
+    </div>
+
+    <div data-page-node-id="1xKuBrRKvNL8mCXq6bt50r" class="divider"><!--pnid:ur1IvLXJIobHRh5xRaVg05-->────────────────────────</div>
+
+    <!--pnid:Rm4y3O5MBO3jCs45D4GOnw--><!-- 副题 -->
+    <div data-page-node-id="cpwV2wL85p4ABN3JzgqLuM" class="subtitle"><!--pnid:hErTGWTRLVkd7vHKU8YxYn-->人人都能 AI 编程</div>
+
+    <!--pnid:QXS69KHaWdWOcO6O0LUp0W--><!-- 要点 -->
+    <div data-page-node-id="BvQYmmB1ED2vhWauB5w2xC" class="points">
+        <div data-page-node-id="Qmtl7DADByRu83hfKMQNkQ" class="point"><span data-page-node-id="403w5CphbfiqCigLjhzYqa" class="marker"><!--pnid:xOhNsCLngEW31p1hThnX4E-->┤</span><span data-page-node-id="GvjFXLfG02v5d8ZBcgnpT6"><!--pnid:dpv0RHPc9l7m92Ht8JUhN3-->不是会写代码，而是会「指挥」AI 写</span></div>
+        <div data-page-node-id="EqHixQMPjHRFTVcqq01QrC" class="point"><span data-page-node-id="dQXHXpC6RMr2SLNj3gGDkS" class="marker"><!--pnid:7KKbDReX6T1HCsaESDGX34-->┤</span><span data-page-node-id="MRNw5hiZNs2xBbzw4K4BVO"><!--pnid:O9TQles2VGDVGzEHkIyNPM-->自然语言 = 新一代编程语言</span></div>
+        <div data-page-node-id="GeDMat5Bx14O6VNOI1YWBt" class="point"><span data-page-node-id="EF92MUD99klIOXttqCG5Yn" class="marker"><!--pnid:bq4z92qFjCOeZKhnuURaTp-->┤</span><span data-page-node-id="ydKOEoW8k6B5IuT9utmJ5l"><!--pnid:9IWSq0D152TbfcJ7A1lVkO-->先跑通最小闭环，再谈优雅架构</span></div>
+    </div>
+
+    <!--pnid:xQt6N2GKrtpRuYLEK58Hto--><!-- 底部 meta -->
+    <div data-page-node-id="UmIt3OelHYBFZ6Xu5oZccM" class="foot">
+        <span data-page-node-id="0tMSbHP7s0RXjaFDpxHwW4"><!--pnid:2rWSAFYMpuZEm24NOoh0mp-->#AI编程 #VibeCoding</span>
+        <span data-page-node-id="Vz0ZTVFzV2ArdS2CMN9ctT"><!--pnid:P9hZOfm5adOP4vJG69PSUF-->巴扎嘿 · 2026</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

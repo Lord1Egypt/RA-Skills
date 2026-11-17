@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/suggested-update-queue.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "queueId",
+    "generatedAt",
+    "executionPolicy",
+    "suggestions"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/suggested-update-queue.schema.json"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "queueId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "executionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "autoApply",
+        "mutationRoute"
+      ],
+      "properties": {
+        "autoApply": {
+          "const": false
+        },
+        "mutationRoute": {
+          "const": "human-reviewed-release"
+        }
+      }
+    },
+    "suggestions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/suggestion"
+      }
+    }
+  },
+  "$defs": {
+    "hashList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "creator-os-common.schema.json#/$defs/sha256"
+      }
+    },
+    "suggestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "suggestionId",
+        "targetType",
+        "targetRef",
+        "proposedAdjustment",
+        "sampleRefs",
+        "sampleCount",
+        "minimumSamples",
+        "evidenceRefs",
+        "counterexampleRefs",
+        "ownerId",
+        "status",
+        "rollback"
+      ],
+      "properties": {
+        "suggestionId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "targetType": {
+          "enum": [
+            "rule",
+            "profile"
+          ]
+        },
+        "targetRef": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?:[A-Z][A-Z0-9]*(?:-[A-Z0-9]+){2,}|[a-z][a-z0-9]*(?:_[a-z0-9]+)+)$"
+        },
+        "proposedAdjustment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "field",
+            "operation",
+            "value"
+          ],
+          "properties": {
+            "field": {
+              "type": "string",
+              "pattern": "^[a-z][A-Za-z0-9.]+$"
+            },
+            "operation": {
+              "enum": [
+                "increase",
+                "decrease",
+                "replace"
+              ]
+            },
+            "value": {
+              "type": [
+                "boolean",
+                "number",
+                "string"
+              ]
+            }
+          }
+        },
+        "sampleRefs": {
+          "$ref": "#/$defs/hashList"
+        },
+        "sampleCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minimumSamples": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/hashList"
+        },
+        "counterexampleRefs": {
+          "$ref": "#/$defs/hashList"
+        },
+        "ownerId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "status": {
+          "enum": [
+            "suggested",
+            "under-review",
+            "approved",
+            "rejected",
+            "released"
+          ]
+        },
+        "reviewerId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "rollback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strategy",
+            "reference"
+          ],
+          "properties": {
+            "strategy": {
+              "enum": [
+                "previous-version",
+                "revert-commit"
+              ]
+            },
+            "reference": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._/-]+(?:#[^\\s]+)?$"
+            }
+          }
+        },
+        "releaseRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "releasedAt",
+            "reviewerId",
+            "versionBefore",
+            "versionAfter",
+            "changeRef"
+          ],
+          "properties": {
+            "releasedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "reviewerId": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            },
+            "versionBefore": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d+\\.\\d+$"
+            },
+            "versionAfter": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d+\\.\\d+$"
+            },
+            "changeRef": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._/-]+(?:#[^\\s]+)?$"
+            }
+          }
+        }
+      }
+    }
+  }
+}

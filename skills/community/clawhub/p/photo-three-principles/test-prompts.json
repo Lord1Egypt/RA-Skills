@@ -1,0 +1,52 @@
+{
+  "skill": "photo-three-principles",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "帮我看看这张照片拍得怎么样，主题明确吗？",
+      "expected_behavior": "调用 photo-three-principles，用三原则（主题/注意力/简洁）评估照片",
+      "notes": "正面场景：照片评价"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "拍照有什么基本原则？怎么判断一张照片好不好？",
+      "expected_behavior": "调用 photo-three-principles，介绍三项基本原则",
+      "notes": "正面场景：学习摄影基础"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我拍的照片总是感觉很杂乱，怎么办？",
+      "expected_behavior": "调用 photo-three-principles，重点讲解'画面简洁'原则和改进建议",
+      "notes": "正面场景：照片杂乱问题"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我查一下佳能R5的参数规格",
+      "expected_behavior": "纯器材参数查询，不应调用任何摄影方法论 skill",
+      "notes": "诱饵：纯信息查询"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "光圈f/2.8和f/4有什么区别？",
+      "expected_behavior": "不应调用 photo-three-principles，应调用 exposure-dual-control 或 depth-of-field-control",
+      "notes": "跨 skill 混淆诱饵：技术参数问题应触发曝光/景深 skill"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "怎么修图让照片更好看？",
+      "expected_behavior": "不应调用（后期修图问题），但需解释三原则在后期裁剪中也有参考价值",
+      "notes": "边界：后期修图 vs 拍摄构图"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过。"
+}

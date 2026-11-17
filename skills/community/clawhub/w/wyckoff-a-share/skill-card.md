@@ -1,48 +1,59 @@
-## Description: <br>
-Run Wyckoff-style A-share analysis from stock codes, holdings, cash, CSV data, and optional chart images with online source fallback and Beijing-time trading-session checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Wyckoff-style A-share analysis from stock codes, portfolio holdings, cash, CSV data, and optional chart images using online market data source fallback and Beijing-time trading-session checks.
 
-## Publisher: <br>
-[YoungCan-Wang](https://clawhub.ai/user/YoungCan-Wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youngcan-wang](https://clawhub.ai/user/youngcan-wang)
 
-## Use Case: <br>
-External users and agents use this skill to analyze A-share symbols, portfolios, cash deployment, or uploaded market files through a Wyckoff workflow. The skill produces session-aware market analysis, data audit details, portfolio action guidance, and charting code or chart output when plotting is allowed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate buy, sell, rotation, or cash-deployment suggestions for A-share portfolios. <br>
-Mitigation: Treat outputs as informational financial analysis only, not trading authorization or personalized financial advice. <br>
-Risk: Portfolio holdings, costs, quantities, and cash balances may be sensitive. <br>
-Mitigation: Avoid sharing portfolio details unless the user accepts that they will be processed for the requested analysis. <br>
-Risk: The skill may provide Python charting code or commands. <br>
-Mitigation: Review generated code before running it and execute it only in a sandboxed environment. <br>
-Risk: Online market lookups may expose stock symbols and event dates to public financial data sources. <br>
-Mitigation: Use the skill only when public-source A-share lookup is acceptable for the requested symbols and dates. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Chinese A-share symbols or portfolios with Wyckoff market-structure reasoning, source-audited market data, and Beijing-time trading-session boundaries. It supports single-stock analysis, holding add/reduce/exit suggestions, candidate rotation comparison, empty-position cash deployment suggestions, and optional chart generation when session rules allow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/YoungCan-Wang/wyckoff-a-share) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Source fallback policy](artifact/rules/source-fallbacks.md) <br>
-- [Analysis and plotting prompt](artifact/rules/alpha-system-prompt.md) <br>
-- [OpenAI agent configuration](artifact/agents/openai.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured sections and optional Python plotting code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include data audit tables, session verdicts, Wyckoff event labels, portfolio action labels, and chart generation instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can produce concrete add, reduce, exit, switch, or cash-deployment portfolio actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those outputs as market analysis for independent review against personal risk tolerance and qualified financial advice, not as instructions to trade.
+
+Risk: The skill depends on online public market data sources that may fail, differ in schema, or return insufficient rows.
+
+Mitigation: Review the data audit table, source used, rows kept, window end date, and fallback count before relying on the analysis.
+
+Risk: Immediate intraday action can be inappropriate outside valid A-share trading windows.
+
+Mitigation: Use the required Beijing-time session verdict and T+1 boundaries; outside tradable sessions, treat outputs as post-market review, next-day planning, or order strategy only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youngcan-wang/skills/wyckoff-a-share)
+- [alpha-system-prompt.md](artifact/rules/alpha-system-prompt.md)
+- [source-fallbacks.md](artifact/rules/source-fallbacks.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, guidance]
+
+**Output Format:** [Markdown analysis with data audit tables, Chinese-language trading-session status, portfolio action labels, and optional Python plotting code or chart results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include direct-sounding portfolio actions; users should treat them as analysis for review, not instructions to trade.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

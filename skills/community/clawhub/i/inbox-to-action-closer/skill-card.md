@@ -1,42 +1,62 @@
-## Description: <br>
-Orchestration skill that processes raw work-item data from Slack, GitHub, calendar, Notion, Trello, and email, then produces a merged, prioritized action board with owners, due dates, reply drafts, and follow-up questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This orchestration skill processes caller-supplied raw work-item data from Slack, GitHub, calendar, Notion, Trello, and email into a merged, prioritized action board with owners, due dates, reply drafts, and follow-up questions.
 
-## Publisher: <br>
-[honouralexwill](https://clawhub.ai/user/honouralexwill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[honouralexwill](https://clawhub.ai/user/honouralexwill)
 
-## Use Case: <br>
-Developers and agents use this skill to turn caller-supplied Slack, GitHub, calendar, Notion, Trello, and email work data into a consolidated draft action board for prioritization and follow-up planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The action board depends on raw work data supplied by upstream tools, so it may be incomplete when a source is unavailable or omitted. <br>
-Mitigation: Review skipped-source notes and verify important items against the original source links before acting. <br>
-Risk: Suggested actions and reply drafts can be incorrect or misleading if the supplied source data is stale, partial, or ambiguous. <br>
-Mitigation: Treat outputs as drafts, review the original context, and require explicit confirmation before any write-back or message is sent. <br>
-Risk: Upstream connectors may introduce separate credential, API, or data-access risks outside this skill's local processing behavior. <br>
-Mitigation: Review upstream connectors separately before providing Slack, GitHub, calendar, Notion, Trello, or email data to the skill. <br>
+## Use Case:
 
+Employees, teams, and developers use this skill to turn raw pending-work data from communication, code, calendar, and task systems into a single draft action board for review and follow-up planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/honouralexwill/inbox-to-action-closer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown action board plus structured JSON action board data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft-only action items grouped by urgency, with source links, owners, due dates, reply drafts, follow-up questions, skipped-source notes, and item counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Repository guidance files include unrelated agent-control instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review repository guidance before installation and do not let it override the agent's normal policies.
+
+Risk: Rendered Markdown may include source-supplied content with weaker sanitization.
+
+Mitigation: Prefer the structured JSON output for automation, or sanitize and review rendered Markdown before sharing it.
+
+Risk: Heuristic scoring and deduplication can miss context or rank items unexpectedly.
+
+Mitigation: Treat the board as a draft, verify source URLs, and confirm priorities before acting.
+
+Risk: Development dependencies may need updates before local test or development-server use.
+
+Mitigation: Update and review development dependencies before running tests or dev servers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/honouralexwill/skills/inbox-to-action-closer)
+- [Publisher profile](https://clawhub.ai/user/honouralexwill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown action board and structured JSON action-board object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only output with source URLs, priority tiers, skipped-source details, and item counts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

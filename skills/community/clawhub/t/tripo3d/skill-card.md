@@ -1,44 +1,56 @@
-## Description: <br>
-Tripo3D AI 3D model generation. Use when generating 3D models from text prompts or images via the Tripo3D API. Supports Text-to-3D, Image-to-3D, Multiview-to-3D, model refinement, polling, and batch generation. Triggered by requests like "generate a 3D model", "text to 3D", "image to 3D", "photo to 3D", "create 3D from photo", or when the user provides a Tripo3D API token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tripo3D helps agents generate 3D models from text prompts, images, or multiview image sets through the Tripo3D API, including refinement, polling, and download workflows.
 
-## Publisher: <br>
-[richardcoder849](https://clawhub.ai/user/richardcoder849) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardcoder849](https://clawhub.ai/user/richardcoder849)
 
-## Use Case: <br>
-Developers and 3D content creators use this skill to generate, refine, poll, and download Tripo3D models from text prompts, single images, or multiview image sets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected images, and generated task data are sent to the external Tripo3D service. <br>
-Mitigation: Avoid sending sensitive personal, proprietary, or regulated images and prompts unless the user's environment and Tripo3D account terms permit it. <br>
-Risk: The skill requires a Tripo3D API key and includes command examples that use authorization headers. <br>
-Mitigation: Store the API key in the TRIPO3D_API_KEY environment variable and do not paste secrets into chat, source files, or saved scripts. <br>
-Risk: Proxy and download commands can affect network routing or write files locally. <br>
-Mitigation: Review PowerShell proxy and download commands before running them, and choose explicit output paths for downloaded model files. <br>
+## Use Case:
 
+Developers and creators use this skill to prepare Tripo3D API calls for text-to-3D, image-to-3D, multiview generation, model refinement, polling, and asset download workflows. It is intended for agents helping users create 3D models through the Tripo3D third-party service.
 
-## Reference(s): <br>
-- [Tripo3D Platform](https://platform.tripo3d.ai) <br>
-- [Tripo3D OpenAPI Base URL](https://api.tripo3d.ai/v2/openapi) <br>
-- [ClawHub Skill Page](https://clawhub.ai/richardcoder849/tripo3d) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference generated task IDs, model download URLs, preview image URLs, and local GLB or FBX files returned by Tripo3D.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Prompts and uploaded images are sent to Tripo3D as a third-party generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and image files approved for Tripo3D, and confirm the exact upload inputs before running image or multiview workflows.
+
+Risk: The workflow uses TRIPO3D_API_KEY and downloads generated assets from short-lived URLs.
+
+Mitigation: Keep the API key in an environment variable, avoid exposing it in chat or files, and confirm the intended download destination before fetching model files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richardcoder849/skills/tripo3d)
+- [Tripo3D platform](https://platform.tripo3d.ai)
+- [Tripo3D OpenAPI base URL](https://api.tripo3d.ai/v2/openapi)
+- [Tripo3D Studio](https://studio.tripo3d.ai/?from=landingpage_header&category=featured&model_type=all&recommended=recommended&use_case=all)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe API calls, polling steps, task IDs, model download steps, and Tripo3D configuration requirements.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

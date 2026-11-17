@@ -1,45 +1,64 @@
-## Description: <br>
-Helps an agent maintain per-project context, status, decisions, todos, timelines, risk notes, and recovery anchors across sessions using local project records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Manager helps agents preserve per-project context by creating and maintaining local status files, project indexes, optional checkpoints, Gantt summaries, risk reports, and conversation-summary logs.
 
-## Publisher: <br>
-[krislu1221](https://clawhub.ai/user/krislu1221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[krislu1221](https://clawhub.ai/user/krislu1221)
 
-## Use Case: <br>
-Developers, project-focused agent users, and teams use this skill to resume work across sessions, keep project state isolated, and maintain concise project status files instead of relying on chat history alone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation-derived project information in local status files, checkpoint files, daily memory summaries, project logs, or an external MemPalace archive. <br>
-Mitigation: Use explicit project commands, require confirmation before writes, and enable session sync, dialogue logs, risk scans, cron checks, or MemPalace archival only when the user opts in. <br>
-Risk: Periodic scanning and checkpoint behavior can process new conversation content after activation. <br>
-Mitigation: Keep state synchronization disabled by default, set short checkpoint expiration, and stop synchronization immediately when the user asks. <br>
-Risk: The documented read-merge-write workflow reduces accidental overwrites but does not fully prevent concurrent update conflicts. <br>
-Mitigation: Read the latest project file before each write, summarize the intended change, and ask for confirmation before updating shared project records. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep AI-assisted project work recoverable across sessions by storing progress, decisions, todos, timelines, and risks in local project files. It is intended for project context management rather than application runtime execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krislu1221/agent-project-manager) <br>
-- [README.md](README.md) <br>
-- [STATUS-A.md template](templates/STATUS-A.md) <br>
-- [STATUS-B.md template](templates/STATUS-B.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with project status templates, local file paths, YAML blocks, and optional read-only git commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project state artifacts such as STATUS.md, index.md, GANTT.md, project logs, and checkpoint JSON when the user confirms or opts in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.2 (source: server release metadata) <br>
+Risk: Optional status synchronization and daily checks can create ongoing background monitoring and retention of conversation-derived summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable synchronization only when explicitly needed, verify its expiration settings, and remove any scheduled tasks when the workflow is no longer desired.
+
+Risk: Project status, memory, and conversation-log files may contain sensitive user or project details.
+
+Mitigation: Avoid sharing secrets in conversations that may be summarized, and review local project and memory files before publishing or committing them.
+
+Risk: Read-merge-write updates reduce accidental overwrite risk but do not prevent concurrent edits between read and write.
+
+Mitigation: Review proposed file changes before accepting them and use version control or backups for important project records.
+
+Risk: Optional full conversation archival can preserve more history than users expect.
+
+Mitigation: Use MemPalace or conversation-log archival only when the workspace retention policy permits that level of history.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krislu1221/skills/agent-project-manager)
+- [README](artifact/README.md)
+- [Full Status Template](artifact/templates/STATUS-A.md)
+- [Lightweight Status Template](artifact/templates/STATUS-B.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files, JSON checkpoint configuration, and concise text status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local project and memory files after user confirmation; optional synchronization and logging can retain conversation-derived summaries.]
+
+## Skill Version(s):
+
+2.7.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Helps agents design and operate multi-department agent organizations with rosters, communication channels, scheduled reporting, learning workflows, and audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents set up multi-department agent organizations with hierarchy, communication patterns, reporting, learning workflows, cron templates, and audit practices.
 
-## Publisher: <br>
-[ygq19901001](https://clawhub.ai/user/ygq19901001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygq19901001](https://clawhub.ai/user/ygq19901001)
 
-## Use Case: <br>
-Developers and operators use this skill to structure an agent team into departments, define responsibilities, set communication routes, and plan scheduled reporting and inspection workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional scheduled jobs can write reports and share summaries across sessions, which may expose sensitive prompts, customer data, or secrets if those details are included. <br>
-Mitigation: Review cron templates before enabling them, confirm file destinations and report recipients, and keep shared summaries free of secrets, customer data, and private prompts. <br>
-Risk: Autonomous reporting or inspection routines can keep running with stale, low-quality, or failed outputs if cron health is not monitored. <br>
-Mitigation: Use the skill's inspection guidance to monitor consecutive failures, review generated reports, and require human approval before relying on a newly automated workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to design and run agent-team operating systems with department boundaries, routing rules, scheduled work, health checks, and release review practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ygq19901001/skills/biobrain-agent-organization-manager) <br>
-- [Server-resolved source repository](https://github.com/Ygq19901001/biobrain-agent-organization-manager) <br>
-- [Communication patterns reference](https://github.com/Ygq19901001/biobrain-agent-organization-manager/blob/08d78b62a09f87a29095a3538cbfc74774a7766b/references/communication-patterns.md) <br>
-- [Cron templates reference](https://github.com/Ygq19901001/biobrain-agent-organization-manager/blob/08d78b62a09f87a29095a3538cbfc74774a7766b/references/cron-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with roster templates, communication patterns, and cron-style JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scheduled job templates and operational checklists that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Scheduled autonomous workflows can run with incorrect paths, timezone, budget, or message targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm writable paths, timezone, model or API budget, message targets, and pause or rollback process before enabling cron templates.
+
+Risk: Release-oriented guidance could lead an agent to commit, push, release, or publish changes without enough oversight.
+
+Mitigation: Require manual review before any commit, push, release, or publish action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ygq19901001/skills/biobrain-agent-organization-manager)
+- [Server-resolved source repository](https://github.com/Ygq19901001/biobrain-agent-organization-manager)
+- [Communication Patterns for Multi-Agent Organizations](references/communication-patterns.md)
+- [Cron Templates for Agent Organizations](references/cron-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with templates and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes roster, directory, cron, communication, audit, and release-review templates.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

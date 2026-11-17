@@ -1,40 +1,55 @@
-## Description: <br>
-Fetches and summarizes the latest Singapore Pools TOTO results from official Singapore Pools data files for normal, cascade, hongbao, and special draws. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize latest Singapore Pools TOTO results from official Singapore Pools data files for normal, cascade, hongbao, and special draws.
 
-## Publisher: <br>
-[bluesneed](https://clawhub.ai/user/bluesneed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluesneed](https://clawhub.ai/user/bluesneed)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current Singapore Pools TOTO draw details, cite the official source URL, and optionally produce JSON for automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs live web access to singaporepools.com.sg, so results can fail or become stale if the network is unavailable or the official page structure changes. <br>
-Mitigation: Allow outbound access only to the documented Singapore Pools endpoints, include the reported source URL in responses, and retry or update the parser when fetch or parsing errors occur. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve the latest Singapore Pools TOTO winning numbers, draw details, Group 1 prize, winning shares, and official source URL in text or JSON form.
 
-## Reference(s): <br>
-- [Singapore Pools TOTO result sources](references/source-endpoints.md) <br>
-- [Official Singapore Pools TOTO results page](https://www.singaporepools.com.sg/en/product/pages/toto_results.aspx) <br>
-- [Singapore Pools lottery output data archive](https://www.singaporepools.com.sg/DataFileArchive/Lottery/Output/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text or JSON with source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes draw date, draw number, winning numbers, additional number, Group 1 prize, winning shares, single-draw page URL, and source file URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The bundled Python script makes outbound requests to singaporepools.com.sg for public lottery result data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that outbound access is acceptable; prefer domain-scoped network permissions for stronger governance.
+
+Risk: Result parsing depends on Singapore Pools endpoint filenames and HTML classes remaining stable.
+
+Mitigation: If parsing fails, verify the official source URL and update the endpoint mapping or parser selectors before relying on results.
+
+## Reference(s):
+
+- [Singapore Pools Toto Result Sources](references/source-endpoints.md)
+- [Singapore Pools TOTO Results Page](https://www.singaporepools.com.sg/en/product/pages/toto_results.aspx)
+- [Singapore Pools Lottery Output Archive](https://www.singaporepools.com.sg/DataFileArchive/Lottery/Output/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON returned by a Python command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes draw type, source URL, retrieval timestamp, draw date, draw number, winning numbers, additional number, Group 1 prize, single-draw page URL, and winning shares when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

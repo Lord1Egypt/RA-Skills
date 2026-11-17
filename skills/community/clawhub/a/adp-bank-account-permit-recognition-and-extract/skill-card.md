@@ -1,49 +1,66 @@
-## Description: <br>
-基于来也科技ADP平台的中国开户许可证智能识别与信息抽取Skill，支持核准号、编号、基本存款账户、法定代表人、开户银行、银行账号等关键字段抽取，并输出结构化JSON。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents to use Laiye ADP to recognize Chinese bank account opening permits and extract key permit fields as structured JSON.
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-External developers and business teams use this skill to invoke Laiye ADP for Chinese account-opening permit recognition and extract banking, company, and representative fields into structured results for qualification checks, onboarding, and business-system integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with separate China mainland and overseas ADP service endpoints. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends account-opening permits and extracted banking or business data to Laiye ADP cloud services. <br>
-Mitigation: Use it only for documents the operator is authorized to process, select the approved ADP endpoint, and protect exported JSON results. <br>
-Risk: The documentation includes remote shell and PowerShell installer examples. <br>
-Mitigation: Prefer npm or verified release installation, and review any remote installer before execution. <br>
-Risk: The ADP CLI exposes broad document-processing and custom-app management commands beyond permit extraction. <br>
-Mitigation: Restrict agent use to configuration, app lookup, and permit extraction commands unless administrative app management is intentionally required. <br>
-Risk: API keys are required to access the ADP service. <br>
-Mitigation: Store credentials in approved secret storage or environment variables and avoid exposing them in logs, prompts, or shared outputs. <br>
+## Use Case:
 
+External developers and business automation teams use this skill to configure the ADP CLI, select the built-in account-opening-permit extraction app, and extract permit identifiers, representative names, banks, account numbers, and related fields from images, PDFs, URLs, local files, or Base64 input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laiye-adp/adp-bank-account-permit-recognition-and-extract) <br>
-- [ADP China mainland portal](https://adp.laiye.com/?utm_source=clawhub) <br>
-- [ADP global portal](https://adp-global.laiye.com/?utm_source=clawhub) <br>
-- [ADP CLI releases](https://github.com/laiye-ai/adp-cli/releases) <br>
-- [ADP CLI user guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc) <br>
-- [ADP Open API guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc) <br>
+### Deployment Geography for Use:
 
+Global, subject to the user's selected Laiye ADP service region and applicable data handling requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and structured JSON extraction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ADP API key, an ADP API base URL, and an account-opening permit app_id; results may be written to stdout or exported to JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Installer commands include pipe-to-shell patterns and remote package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned and verified release or inspected local installer, and avoid administrator or root execution unless explicitly required.
+
+Risk: The workflow sends account-opening permits and extracted PII-bearing fields to Laiye ADP cloud services.
+
+Mitigation: Confirm organizational approval for cloud processing, select the appropriate ADP service region, and redact or protect outputs before logging, storage, or redistribution.
+
+Risk: API keys and local ADP configuration are required for operation.
+
+Mitigation: Store credentials securely, avoid committing local config or exported task files, and rotate keys if exposure is suspected.
+
+Risk: The ADP CLI supports broader parsing, custom-app, and administrative commands beyond the narrow permit-extraction use case.
+
+Mitigation: Use only the commands needed for account-opening-permit extraction unless a reviewer explicitly approves broader CLI operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laiye-adp/skills/adp-bank-account-permit-recognition-and-extract)
+- [Laiye ADP China portal](https://adp.laiye.com/?utm_source=clawhub)
+- [Laiye ADP global portal](https://adp-global.laiye.com/?utm_source=clawhub)
+- [ADP CLI user guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc)
+- [ADP Open API user guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc)
+- [ADP CLI GitHub releases](https://github.com/laiye-ai/adp-cli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with CLI commands and structured JSON extraction results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce stdout JSON for single documents or exported JSON files and task IDs for batch or asynchronous processing.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

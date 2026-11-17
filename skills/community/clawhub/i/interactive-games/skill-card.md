@@ -1,42 +1,54 @@
-## Description: <br>
-通用互动游戏框架，支持文字冒险、猜谜和问答等互动游戏类型，包含剧情分支、角色状态和存档功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language interactive game framework for agents that supports text adventures, riddles, quizzes, branching story play, character state, and JSON-style save/load flows.
 
-## Publisher: <br>
-[yangyunxiao-ai](https://clawhub.ai/user/yangyunxiao-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yangyunxiao-ai](https://clawhub.ai/user/yangyunxiao-ai)
 
-## Use Case: <br>
-Agent users use this skill to start and play lightweight text adventure, riddle, and quiz games inside an agent conversation. Developers can extend the included JavaScript modules with new game types, themes, and input handlers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate during unrelated conversations if broad game-related phrasing is treated as a trigger. <br>
-Mitigation: Use explicit game-start phrases such as starting a text adventure or riddle game before invoking the skill. <br>
-Risk: The artifact includes publication guide commands for ClawHub login and publishing that are not needed for gameplay. <br>
-Mitigation: Do not run login or publish commands unless intentionally maintaining or publishing the skill under an authorized account. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add Chinese-language game play to an agent, including text adventure sessions, puzzle games, branching story responses, player state, and save/load commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangyunxiao-ai/interactive-games) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Conversational game text, Markdown usage guidance, JavaScript examples, and JSON-compatible save state objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Game state is maintained locally by the included engine and can be represented as JSON save data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: Broad game-related trigger phrases could start game mode during ordinary conversation about games.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow activation examples before integrating the skill into an agent.
+
+Risk: The skill is intended for Chinese-language interactive game play, so it may not fit agents or users expecting another language or non-game behavior.
+
+Mitigation: Install it only for agents that should provide Chinese-language game sessions, and expose clear game commands to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangyunxiao-ai/skills/interactive-games)
+- [Publisher profile](https://clawhub.ai/user/yangyunxiao-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language Markdown or text responses with JavaScript examples, shell commands, configuration snippets, and JSON-style game state.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Game outputs may include branching choices, player status, inventory, score, hints, and save/load state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

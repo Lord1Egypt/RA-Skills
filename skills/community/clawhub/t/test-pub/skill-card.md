@@ -1,42 +1,56 @@
-## Description: <br>
-Generates structured Chinese AI industry news digests by searching current AI news and summarizing key developments, funding, product launches, and technical breakthroughs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured AI industry news digests by researching current headlines, funding activity, technical advances, product launches, and company updates.
 
-## Publisher: <br>
-[yqghlx](https://clawhub.ai/user/yqghlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yqghlx](https://clawhub.ai/user/yqghlx)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, and teams use this skill to track daily or weekly AI industry news, monitor focused topics, analyze competitors, and prepare report material with source links.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill relies on web search and fetch tools, so query terms and visited sources may leave the agent environment.
+
+Mitigation: Use normal caution for web research and avoid including sensitive internal information in search prompts.
+
+Risk: News summaries can become stale or miss context as stories develop.
+
+Mitigation: Review source links and recency before using the digest for decisions or external reporting.
+
+Risk: Default behavior is Chinese and AI-focused, which may not match broader technology-news requests.
+
+Mitigation: State language, scope, topic filters, and time range explicitly when invoking the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Teams, analysts, and developers use this skill to monitor current AI industry news, track specific AI topics or company activity, and produce daily or weekly Chinese briefings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill searches and fetches web pages for current news, so query terms and selected sources may leave the agent environment. <br>
-Mitigation: Use non-sensitive topics and review source links before relying on the digest. <br>
-Risk: News summaries may be incomplete, stale, or affected by source quality. <br>
-Mitigation: Ask for cited sources and verify important claims against authoritative publications. <br>
-Risk: When Feishu output is requested, the skill can create and write a document outside the chat. <br>
-Mitigation: Request Feishu output only when document creation is intended, and review the resulting document before sharing it. <br>
+**Output Format:** [Markdown or plain text news digest with source links]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yqghlx/test-pub) <br>
+**Other Properties Related to Output:** [Can vary by topic, time range, language preference, output format, and detail level.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text, with an optional Feishu document link when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese output, includes source links for news items, and supports user-specified topic, language, format, and detail preferences.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

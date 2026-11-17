@@ -1,42 +1,58 @@
-## Description: <br>
-Automate builds, tests, and deployments across web, mobile, and backend applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate builds, tests, and deployments across web, mobile, and backend applications.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to select CI/CD platforms, create build and deployment workflows, debug failed builds, and apply web and mobile pipeline patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: CI/CD snippets can expose credentials or signing material if copied without production hardening. <br>
-Mitigation: Store credentials only in protected CI secret stores, require approvals for production deploys, pin and review third-party actions, avoid caching or uploading signing files, and delete decoded keystores after builds. <br>
-Risk: Workflow examples may need environment-specific review before production deployment. <br>
-Mitigation: Review proposed workflows against the target repository, runner permissions, deployment environment, and release approval process before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/ci-cd) <br>
-- [Mobile CI/CD Patterns](mobile.md) <br>
-- [CI/CD Templates](templates.md) <br>
-- [Web CI/CD Patterns](web.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to choose CI/CD platforms, create workflow templates, improve build caching, configure mobile signing, and debug failing builds for web, mobile, backend, and monorepo projects.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML and shell command code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides copy-paste CI/CD snippets and implementation guidance for web, mobile, Docker, GitHub Actions, and GitLab CI workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reusable CI/CD workflow examples may be copied into repositories with unsafe deployment assumptions.
+
+Mitigation: Review and harden workflows before installation, including minimal permissions, environment approvals, restricted deployment keys and sudo rights, and safe publication settings for Docker images or mobile artifacts.
+
+Risk: Third-party actions and mutable dependencies in workflow examples can change behavior unexpectedly.
+
+Mitigation: Pin third-party actions and runtime images to reviewed versions or commits before using the examples in production pipelines.
+
+Risk: Secrets used by CI jobs can be exposed through pull-request workflows or deployment steps.
+
+Mitigation: Keep secrets in platform secret stores, avoid exposing them to untrusted pull-request jobs, and prefer OIDC or scoped credentials where supported.
+
+## Reference(s):
+
+- [CI/CD Templates](templates.md)
+- [Mobile CI/CD Patterns](mobile.md)
+- [Web CI/CD Patterns](web.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces copy-paste CI/CD workflow examples and troubleshooting guidance; examples require review before use in a repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

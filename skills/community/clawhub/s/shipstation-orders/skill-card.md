@@ -1,41 +1,59 @@
-## Description: <br>
-Monitor ShipStation orders, detect issues, and send alerts for e-commerce businesses using ShipStation across multiple marketplaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor ShipStation orders, detect issues, and send alerts for e-commerce businesses using ShipStation for order fulfillment across multiple platforms.
 
-## Publisher: <br>
-[cprice70](https://clawhub.ai/user/cprice70) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cprice70](https://clawhub.ai/user/cprice70)
 
-## Use Case: <br>
-External e-commerce operators and their agents use this skill to monitor ShipStation order activity, identify new orders, flag stuck or on-hold orders, and surface expedited shipping needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: ShipStation credentials and order or customer details may be exposed if .env or generated state files are committed, backed up broadly, or shared. <br>
-Mitigation: Install only in a workspace appropriate for sensitive order data, keep .env, state.json, and shipping-state.json out of source control and broad backups, and restrict access to the workspace. <br>
-Risk: Continuous heartbeat or cron monitoring may send order alerts more widely than intended. <br>
-Mitigation: Enable scheduled monitoring only when continuous checks are intended and limit alert destinations to approved recipients. <br>
+## Use Case:
 
+External e-commerce operators and developers use this skill to monitor ShipStation orders, detect new or delayed orders, identify orders on hold, and surface expedited shipping items for follow-up.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cprice70/shipstation-orders) <br>
-- [ShipStation API V1 documentation](https://www.shipstation.com/docs/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON from monitoring scripts plus Markdown setup guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node plus SHIPSTATION_API_KEY and SHIPSTATION_API_SECRET; writes local state files to suppress duplicate alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill requires ShipStation API credentials to query order data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials in a local .env file or environment variables, avoid committing secrets, and install only where sharing ShipStation API access is acceptable.
+
+Risk: The scripts create local state files containing processed order IDs and check timestamps.
+
+Mitigation: Store the skill in a trusted workspace and review local state retention before using it with sensitive operational data.
+
+Risk: Recurring heartbeat or cron use can repeatedly access ShipStation and trigger external notifications.
+
+Mitigation: Review scheduled execution and notification wrappers before enabling recurring checks.
+
+## Reference(s):
+
+- [ShipStation API V1 documentation](https://www.shipstation.com/docs/api/)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/cprice70/skills/shipstation-orders)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ShipStation API credentials and creates local state files to track processed orders and check timestamps.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

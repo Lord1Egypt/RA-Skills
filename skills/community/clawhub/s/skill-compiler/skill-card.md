@@ -1,41 +1,58 @@
-## Description: <br>
-Compile SKILL.md files into runtime artifacts, verify freshness and health, and prepare portable publish-ready skill folders for ClawHub-style registries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compile SKILL.md files into runtime artifacts, verify freshness and health, and prepare portable publish-ready skill folders for ClawHub-style registries.
 
-## Publisher: <br>
-[shaoyanji](https://clawhub.ai/user/shaoyanji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shaoyanji](https://clawhub.ai/user/shaoyanji)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to compile SKILL.md source files into runtime artifacts, check local compiler dependencies, and prepare skill folders for publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports missing helper scripts referenced by the skill. <br>
-Mitigation: Verify helper scripts from a trusted source before installation or use. <br>
-Risk: Compilation can broadly change skill runtime files. <br>
-Mitigation: Run the compiler only on the intended skill directory and review generated file diffs before relying on them. <br>
-Risk: Generic execute-style triggers and the publish command can be ambiguous if invoked without scope. <br>
-Mitigation: Use exe, execute, and publish commands only when the requested action is explicit and scoped. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaoyanji/skill-compiler) <br>
+## Use Case:
 
+Developers and engineers use this skill to compile skill source files into lower-token runtime artifacts and to prepare skill folders for ClawHub-style publication.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated skill artifact files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates SKILL.struct.json and SKILL.toon artifacts for each input SKILL.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read skill files under a chosen skills directory when run.
+
+Mitigation: Run it only against intended local skill directories and review the generated artifacts before publishing or loading them.
+
+Risk: Generic execute-style triggers could be broader than intended in unrestricted runtimes.
+
+Mitigation: Enable execute triggers only when the runtime restricts them to explicit skill invocations.
+
+Risk: The submitted artifact describes script paths but does not bundle executable code.
+
+Mitigation: Review or supply the referenced scripts before relying on compiler commands in production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shaoyanji/skills/skill-compiler)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact skill.yaml](artifact/skill.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and generated JSON/TOON artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sibling SKILL.struct.json and SKILL.toon artifacts for each input SKILL.md.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

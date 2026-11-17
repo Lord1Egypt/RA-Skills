@@ -1,47 +1,61 @@
-## Description: <br>
-Pre-deployment governance for release and infrastructure rollout requests. Use when an agent or workflow proposes shipping code/config/infrastructure changes to staging or production and you need deterministic ALLOW/BLOCK/REQUIRE_REWRITE decisions with strict schema validation, idempotency, and board-native audit artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-deployment governance for release and infrastructure rollout requests that returns deterministic ALLOW, BLOCK, or REQUIRE_REWRITE decisions with strict schema validation, idempotency, and audit artifacts.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers, release engineers, and agent-assisted CI/CD workflows use this skill to evaluate proposed code, configuration, or infrastructure deployments before rollout. It returns deterministic ALLOW, BLOCK, or REQUIRE_REWRITE decisions and records audit artifacts under the configured state path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can gate real deployment decisions and may block or require rewrites for rollout requests. <br>
-Mitigation: Decide before installation whether it is advisory or authoritative, and require human review before enforcing it in production CI/CD. <br>
-Risk: Decision artifacts are written to paths resolved from CONSENSUS_STATE_ROOT and CONSENSUS_STATE_FILE. <br>
-Mitigation: Use a dedicated protected state directory, avoid system or secrets paths, run as a non-root user, and scope writable mounts. <br>
-Risk: External votes can influence deployment decisions in external_agent mode. <br>
-Mitigation: Accept external_votes only from authenticated trusted systems and keep minimal runtime environment access. <br>
-Risk: The skill depends on consensus-guard-core for aggregation and state helpers. <br>
-Mitigation: Pin dependencies, review consensus-guard-core, and audit the lockfile before CI/CD use. <br>
+## Use Case:
 
+Developers and release engineers use this skill as a pre-deployment gate for code, configuration, and infrastructure rollout requests. It helps agent-assisted CI/CD workflows check release readiness, rollback coverage, error-budget status, and production rollout safeguards before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-deployment-guard) <br>
-- [consensus-guard-core package](https://www.npmjs.com/package/consensus-guard-core) <br>
-- [consensus-guard-core source](https://github.com/kaicianflone/consensus-guard-core) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, files, guidance] <br>
-**Output Format:** [JSON decision payload with board audit artifact writes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns ALLOW, BLOCK, or REQUIRE_REWRITE with policy flags, votes, aggregation details, required actions, and board write references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.10 (source: server release evidence and package.json) <br>
+Risk: Unbounded external vote data can be persisted and may exhaust storage or runtime resources in deployment automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require bounded input sizes, maxItems and maxLength limits for external votes and nested strings, artifact-size checks, and rate limits before CI/CD installation.
+
+Risk: State writes can affect sensitive locations if the consensus state path is configured too broadly.
+
+Mitigation: Use a dedicated non-privileged state directory, scoped writable mounts, a non-root execution user, and avoid system, secrets, or shared sensitive directories.
+
+Risk: The skill imports shared consensus dependencies that remain part of the trust boundary.
+
+Mitigation: Pin and periodically audit consensus-guard-core and the lockfile before promotion into deployment automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaicianflone/skills/consensus-deployment-guard)
+- [ClawHub publisher profile](https://clawhub.ai/user/kaicianflone)
+- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core)
+- [consensus-guard-core source reference](https://github.com/kaicianflone/consensus-guard-core)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Files]
+
+**Output Format:** [JSON decision object with policy flags, votes, aggregation details, final decision, required actions, and audit write references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one of ALLOW, BLOCK, or REQUIRE_REWRITE and writes decision artifacts under the configured consensus state path.]
+
+## Skill Version(s):
+
+0.1.10 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

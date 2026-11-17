@@ -1,38 +1,50 @@
-## Description: <br>
-A Chinese literature skill for poetry appreciation, reading recommendations, and beginner calligraphy guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language literature assistant that activates on poetry, reading, calligraphy, book lists, novels, prose, classical books, and related literary topics to provide poem appreciation, book recommendations, and calligraphy guidance.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-External users and agents use this skill to answer Chinese literature questions with original poetry text, interpretation, modern-life connections, book suggestions, and calligraphy practice guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad literature-related trigger words may activate the skill during ordinary conversations about reading, poetry, or calligraphy. <br>
-Mitigation: Narrow or disable the skill if those activations are distracting for the user's agent setup. <br>
+## Use Case:
 
+External users and developers use this skill to guide Chinese-language literary conversations, including poem interpretation, seasonal or classic reading recommendations, and introductory calligraphy practice advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zcr3344/xiao-chuang-you-literature) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses for literature, reading, book recommendation, and calligraphy topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may activate on broad reading or literature prompts and steer responses toward a Chinese literary style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Chinese literature, poetry, reading-list, and calligraphy scenarios; ask for a neutral or different literary style when that style is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-literature)
+- [ClawHub publisher profile](https://clawhub.ai/user/zcr3344)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text with structured sections for poem appreciation, reading recommendations, and calligraphy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Security evidence indicates no code, persistence, hidden access requests, or external tool use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

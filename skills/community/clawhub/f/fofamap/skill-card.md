@@ -1,56 +1,67 @@
-## Description: <br>
-Use this skill when the user wants FOFA-based asset discovery, host profiling, distribution statistics, icon_hash generation, query refinement after zero-result searches, or cautious follow-up vulnerability triage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+fofamap turns FOFA-based security reconnaissance requests into deterministic asset discovery, host profiling, distribution statistics, icon_hash generation, query refinement, monitoring, and cautious follow-up triage workflows.
 
-## Publisher: <br>
-[asaotomo](https://clawhub.ai/user/asaotomo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asaotomo](https://clawhub.ai/user/asaotomo)
 
-## Use Case: <br>
-Security analysts, developers, and authorized operators use this skill to turn natural-language reconnaissance goals into FOFA API workflows for asset discovery, host profiling, distribution analysis, recurring monitoring, icon_hash pivots, and cautious follow-up triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires FOFA credentials and can store reconnaissance artifacts locally. <br>
-Mitigation: Install only where FOFA credentials and local recon outputs are acceptable, and protect the workspace and environment variables accordingly. <br>
-Risk: The skill is intended for reconnaissance and can support live checks or gated Nuclei follow-up. <br>
-Mitigation: Use it only for assets you are authorized to investigate, and run Nuclei modes only when active validation is intentional and approved. <br>
-Risk: Optional local learning can retain run history and derived patterns. <br>
-Mitigation: Set FOFAMAP_DISABLE_LEARNING=1 or configure FOFAMAP_MEMORY_DIR when retained run history is not acceptable. <br>
-Risk: FOFA results are indexed intelligence and may be stale, partial, or limited by account permissions. <br>
-Mitigation: Call out data limitations in reports, inspect the FOFA permission profile for field-heavy work, and use alive-check only when current reachability changes the decision. <br>
-Risk: The security guidance warns against local tool mutation through update behavior unless intentional. <br>
-Mitigation: Do not run update commands unless local tool changes are expected and approved for the environment. <br>
+## Use Case:
 
+Developers, security analysts, and authorized operators use this skill to translate FOFA reconnaissance requests into permission-aware searches, host profiles, distribution summaries, recurring monitoring reports, and exportable handoff files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asaotomo/fofamap) <br>
-- [Setup](references/setup.md) <br>
-- [Query Playbook](references/query-playbook.md) <br>
-- [Analysis Playbook](references/analysis-playbook.md) <br>
-- [Permission Playbook](references/permission-playbook.md) <br>
-- [Monitor Playbook](references/monitor-playbook.md) <br>
-- [Redteam Hunt Playbook](references/redteam-hunt-playbook.md) <br>
-- [Report Templates](references/report-templates.md) <br>
-- [Evolution Playbook](references/evolution-playbook.md) <br>
-- [Syntax Arsenal](references/syntax-arsenal.md) <br>
-- [Syntax Corpus](references/syntax-corpus.tsv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands; helper runs may also produce JSON, CSV, XLSX, and Markdown report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local reconnaissance artifacts, monitoring snapshots, report files, and bounded learning artifacts under the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: FOFA credentials could be sent to a configured endpoint if FOFA_BASE_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave FOFA_BASE_URL unset unless the endpoint is intentionally selected and trusted.
+
+Risk: Active follow-up can run a locally spoofed nuclei executable.
+
+Mitigation: Run nuclei only from trusted working directories and confirm authorization before active scanning.
+
+Risk: CSV and XLSX exports contain internet-derived data.
+
+Mitigation: Treat exported spreadsheets as untrusted before opening or sharing them.
+
+## Reference(s):
+
+- [fofamap ClawHub listing](https://clawhub.ai/asaotomo/skills/fofamap)
+- [Setup](references/setup.md)
+- [Query Playbook](references/query-playbook.md)
+- [Analysis Playbook](references/analysis-playbook.md)
+- [Permission Playbook](references/permission-playbook.md)
+- [Monitor Playbook](references/monitor-playbook.md)
+- [Red Team Hunt Playbook](references/redteam-hunt-playbook.md)
+- [Report Templates](references/report-templates.md)
+- [Evolution Playbook](references/evolution-playbook.md)
+- [Syntax Arsenal](references/syntax-arsenal.md)
+- [Syntax Corpus](references/syntax-corpus.tsv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON helper results, and optional CSV, XLSX, targets.txt, and Markdown report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FOFA_EMAIL, FOFA_API_KEY, and python3; FOFA_BASE_URL is optional and should remain unset unless a trusted FOFA-compatible endpoint is intended.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

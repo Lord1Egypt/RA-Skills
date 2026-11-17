@@ -1,43 +1,58 @@
-## Description: <br>
-用于识别图片和 PDF 文档，调用你已配置的 OCR 与多模态服务输出 Markdown 结果，并可按需发送到飞书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes images, screenshots, scanned documents, and PDFs using configured OCR and multimodal services, then outputs Markdown results with optional Feishu delivery.
 
-## Publisher: <br>
-[zhangxusong637](https://clawhub.ai/user/zhangxusong637) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangxusong637](https://clawhub.ai/user/zhangxusong637)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to extract structured Markdown from images, screenshots, scanned documents, receipts, tables, and PDFs. It can return local Markdown results and, when explicitly enabled, send recognition output to Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, PDFs, and extracted text can be sent to configured OCR and multimodal providers. <br>
-Mitigation: Use trusted provider endpoints and avoid processing sensitive documents unless the data-sharing path is approved. <br>
-Risk: Remote attachment input can forward authorization or cookie headers to download hosts. <br>
-Mitigation: Keep remote input disabled by default and provide attachment credentials only for trusted hosts. <br>
-Risk: Recognition results can be sent to Feishu when auto-send is explicitly enabled. <br>
-Mitigation: Keep Feishu sending disabled for sensitive documents or require explicit confirmation and a verified recipient. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to extract OCR text from images and PDFs, preserve document structure as Markdown, and optionally send the result to a Feishu conversation when explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangxusong637/vision-ocr) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text, Markdown result files, and concise chat replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OCR-only mode can return raw OCR text; PDF mode can process pages separately; Feishu sending and remote input require explicit enablement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata, package.json, skill.json, README.md) <br>
+Risk: Document contents may be sent to configured OCR or multimodal providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those providers are trusted, and keep sensitive workflows on local output or explicitly disabled sending paths.
+
+Risk: Remote attachment input and OpenClaw session recovery can expose documents or credentials in permissive integrations.
+
+Mitigation: Keep remote input and session recovery disabled unless needed, use an allowlist for remote downloads, validate redirects and DNS, and protect configuration secrets with owner-only permissions.
+
+Risk: Local file path handling can process unintended files if exposed in shared or untrusted chat integrations.
+
+Mitigation: Restrict accepted paths to trusted upload directories and review the integration boundary before enabling shared chat use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangxusong637/skills/vision-ocr)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown text and local Markdown result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally send result files to Feishu when explicit session and sending options are provided.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata, package.json, skill.json, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

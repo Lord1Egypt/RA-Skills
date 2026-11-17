@@ -209,8 +209,8 @@ def main():
         parser.error("Must provide --file_name when using --file_data")
 
     try:
-        client = BaiduDocVLMParser(api_key=args.api_key, secret_key=args.secret_key)
 
+        client = BaiduDocVLMParser(api_key=args.api_key, secret_key=args.secret_key)
         result = client.parse(
             file_url=args.file_url,
             file_data=args.file_data,

@@ -1,44 +1,54 @@
-## Description: <br>
-Find Law Firm helps agents search, shortlist, and enrich US B2B law firms for corporate legal needs such as IP, M&A, securities, employment, litigation, compliance, privacy, real estate, and tax. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds, shortlists, vets, and enriches US business-to-business law firms across corporate practice areas using the ServiceGraph pro_services catalog, while excluding consumer legal matters, non-US firms, in-house hires, freelancers, and DIY legal research.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-External users and business teams use this skill to find, compare, and enrich US business-to-business law firms for outside-counsel procurement. It is intended for corporate practice areas and not for consumer legal matters, DIY legal advice, non-US firms, or in-house hiring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ServiceGraph API key and may expose credentials if secrets are pasted into chat or committed to files. <br>
-Mitigation: Store SERVICEGRAPH_API_KEY locally, do not paste it into chat, and pass it through the shell environment or configured MCP server. <br>
-Risk: Detail enrichment consumes ServiceGraph credits. <br>
-Mitigation: Use free validation, search, and brief reads first; confirm selected firms and expected credit cost before running unlocks. <br>
-Risk: The catalog is limited to US B2B law firms and is not intended for consumer legal matters or DIY legal advice. <br>
-Mitigation: Decline out-of-scope consumer, non-US, and legal-advice requests and direct users to appropriate referral or legal-advice channels. <br>
+## Use Case:
 
+External users and agents use this skill to procure and compare US B2B law firms by practice area, location, size, ratings, and domain. It is intended for business legal-service discovery and enrichment, not personal legal advice or consumer legal referrals.
 
-## Reference(s): <br>
-- [Find Law Firm on ClawHub](https://clawhub.ai/nostrband/find-law-firm) <br>
-- [Publisher profile: nostrband](https://clawhub.ai/user/nostrband) <br>
-- [ServiceGraph API](https://api.servicegraph.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API request examples and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ServiceGraph filters, curl examples, shortlist summaries, and credential setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The REST fallback auth recipe can execute `.env.local` as shell code while loading credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ServiceGraph MCP/OAuth path, or pass only SERVICEGRAPH_API_KEY through safer secret handling or a non-executing dotenv parser.
+
+Risk: Detail enrichment sends law-firm lookup requests to ServiceGraph and can spend credits on paid unlocks.
+
+Mitigation: Show the selected firm apexes and credit cost before unlocking, require explicit user choice, and avoid sending unrelated user data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nostrband/skills/find-law-firm)
+- [ServiceGraph API](https://api.servicegraph.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce ServiceGraph API queries and should require explicit user approval before paid firm-detail unlocks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter declares 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

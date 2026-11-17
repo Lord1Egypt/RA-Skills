@@ -1,41 +1,59 @@
-## Description: <br>
-AI PDF Builder helps agents generate professional PDFs for legal documents, pitch decks, reports, and startup documents from Markdown or prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered PDF generator for legal docs, pitch decks, and reports. SAFEs, NDAs, term sheets, whitepapers. npx ai-pdf-builder. Works with Claude, Cursor, GPT, Copilot.
 
-## Publisher: <br>
-[NextFrontierBuilds](https://clawhub.ai/user/NextFrontierBuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nextfrontierbuilds](https://clawhub.ai/user/nextfrontierbuilds)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to create professional PDF whitepapers, memos, agreements, SAFEs, NDAs, term sheets, reports, and proposals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may run npm CLI commands and local Pandoc or LaTeX setup commands on the user's machine. <br>
-Mitigation: Review the commands before execution and install only in environments where those tools are approved. <br>
-Risk: Optional AI features may process sensitive document content with Anthropic or Claude. <br>
-Mitigation: Use AI features only with documents approved for external AI processing and protect the Anthropic API key. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI PDF Builder npm package](https://www.npmjs.com/package/ai-pdf-builder) <br>
-- [AI PDF Builder GitHub repository](https://github.com/NextFrontierBuilds/ai-pdf-builder) <br>
-- [ClawHub skill page](https://clawhub.ai/NextFrontierBuilds/ai-pdf-builder) <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to generate professional PDFs, including legal documents, investor materials, reports, and proposals, from Markdown files, prompts, or existing documents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of local Pandoc and LaTeX tooling, npm CLI commands, and optional Anthropic API key configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.3 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running mutable npm code through unpinned npx commands may execute a package version that has not been reviewed.
+
+Mitigation: Use a pinned, reviewed ai-pdf-builder version and avoid automatic execution of unpinned npx commands.
+
+Risk: Legal, investor, and business documents may contain confidential information that is exposed through AI features.
+
+Mitigation: Do not process confidential documents through AI features unless the configured provider and data handling are acceptable for that content.
+
+Risk: The skill requires local tools and credentials that can broaden access if run with excessive permissions.
+
+Mitigation: Run with least privilege, expose only needed input and output files, and provide only the required API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nextfrontierbuilds/skills/ai-pdf-builder)
+- [Publisher profile](https://clawhub.ai/user/nextfrontierbuilds)
+- [npm package](https://www.npmjs.com/package/ai-pdf-builder)
+- [Source repository linked in artifact](https://github.com/NextFrontierBuilds/ai-pdf-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and TypeScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or transform Markdown and PDF files through the referenced CLI or package.]
+
+## Skill Version(s):
+
+1.2.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

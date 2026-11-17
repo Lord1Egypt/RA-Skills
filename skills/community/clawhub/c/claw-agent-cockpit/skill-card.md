@@ -1,42 +1,57 @@
-## Description: <br>
-Deploys a local operations dashboard for OpenClaw Coding Plan subscribers to monitor API quota, usage trends, token consumption, cron settings, agent status, and subscription timing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLAW Agent 智控驾驶舱 deploys a local operations dashboard for OpenClaw Coding Plan users to monitor API quota, forecast usage, analyze token trends, manage Cron jobs, track Agent status, and watch subscription expiry.
 
-## Publisher: <br>
-[mumuli2021](https://clawhub.ai/user/mumuli2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mumuli2021](https://clawhub.ai/user/mumuli2021)
 
-## Use Case: <br>
-OpenClaw Coding Plan users and agent operators use this skill to deploy a local dashboard for quota monitoring, predictive usage tracking, token analysis, cron management, and multi-agent status review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated dashboard controls can change scheduled-task state or write local files. <br>
-Mitigation: Keep the dashboard private, bind services to localhost or a trusted network, and add authentication before exposing mutation endpoints. <br>
-Risk: Cron changes may affect recurring agent activity and API usage. <br>
-Mitigation: Review pending cron changes before applying them and enable recurring cron writers only with clear opt-in and a known data path. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and operate a local OpenClaw Coding Plan dashboard for API quota monitoring, usage forecasting, token analysis, Agent status tracking, and Cron task management.
 
-## Reference(s): <br>
-- [Cron Setup Guide](references/cron-setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mumuli2021/claw-agent-cockpit) <br>
-- [Publisher profile](https://clawhub.ai/user/mumuli2021) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands, JavaScript dashboard files, JSON configuration, and local HTML dashboard assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local dashboard assets and operational guidance; users should configure quota cycle dates, PM2 services, and cron behavior for their workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release evidence) <br>
+Risk: The local dashboard services can expose workspace files and unauthenticated mutable APIs if bound to a network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated workspace, bind services to 127.0.0.1 or place them behind authentication, and do not expose ports 8888 or 8889.
+
+Risk: Dashboard-rendered data and background collection can introduce unsafe display behavior or unexpected monitoring activity.
+
+Mitigation: Sanitize dashboard-rendered data and treat the recommended Cron job as an opt-in background collector.
+
+Risk: Unpinned runtime dependencies can change local service behavior over time.
+
+Mitigation: Pin PM2 or use a reviewed local dependency before deploying the services.
+
+## Reference(s):
+
+- [Cron Setup Guide](references/cron-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown deployment guidance with shell command snippets, JavaScript and HTML dashboard files, PM2 configuration, and JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local dashboard service, API service, quota tracker, Agent data updater, seed data files, and Cron setup guidance.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

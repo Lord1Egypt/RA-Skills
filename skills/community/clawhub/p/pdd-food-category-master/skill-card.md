@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a Pinduoduo food-category operations playbook for store recovery, new-store growth, food-safety compliance, enforcement response, DSR improvement, traffic recovery, and closed-loop issue handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+拼多多食品类目全闭环运营技能包，专治老店起死回生、新店登顶类目TOP，覆盖致命风险兜底、老店绝症根治、新店长期登顶、全场景问题闭环解决、执行铁律五大模块。当用户提到拼多多食品运营、老店盘活、新店爆单、食安合规、违规降权、DSR拉升、流量急救、类目TOP时激活。
 
-## Publisher: <br>
-[ccynthia5098-wq](https://clawhub.ai/user/ccynthia5098-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccynthia5098-wq](https://clawhub.ai/user/ccynthia5098-wq)
 
-## Use Case: <br>
-External ecommerce operators and agency teams use this skill to generate operational checklists and remediation guidance for Pinduoduo food-category stores, including risk triage, reputation recovery, growth planning, and incident response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal, tax, food-safety, complaint, and platform-enforcement guidance may be incomplete or stale for a specific store or jurisdiction. <br>
-Mitigation: Treat the skill output as advisory and verify recommendations against official rules or qualified professionals before acting. <br>
-Risk: The skill declares terminal and file tool requirements, which may be unnecessary for checklist-style guidance. <br>
-Mitigation: Avoid granting file or terminal access unless a specific user-directed task requires it. <br>
+## Use Case:
 
+External Chinese-language Pinduoduo food-category sellers and ecommerce operators use this skill for store diagnosis, food-safety compliance planning, traffic recovery, DSR improvement, complaint response, and operating SOP guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ccynthia5098-wq/pdd-food-category-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory operational guidance; verify legal, tax, food-safety, and platform-enforcement recommendations before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill gives business, legal, tax, food-safety, and platform-compliance guidance that may be incomplete or outdated for a specific seller.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm regulated decisions against current Pinduoduo rules, food-safety requirements, tax obligations, and qualified professional advice before acting.
+
+Risk: The skill is tailored to Chinese-language Pinduoduo food sellers and may not transfer cleanly to other marketplaces, languages, or product categories.
+
+Mitigation: Use it only when the user context matches Pinduoduo food-category operations, and adapt recommendations before applying them elsewhere.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccynthia5098-wq/skills/pdd-food-category-master)
+- [Publisher profile](https://clawhub.ai/user/ccynthia5098-wq)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, analysis]
+
+**Output Format:** [Markdown advisory guidance and SOP-style recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business operations guidance; no executable code or hidden persistence reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

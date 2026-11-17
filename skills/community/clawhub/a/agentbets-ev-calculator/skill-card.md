@@ -1,42 +1,52 @@
-## Description: <br>
-Calculate expected value, implied probability, breakeven probability, and betting edge for sports bets or prediction market positions using user-supplied odds and probability estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate expected value for sports bets or prediction market positions using American odds, decimal odds, implied probability, Kalshi contract prices, and an estimated true probability.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External users and agents use this skill to calculate expected value, implied probability, edge, and breakeven probability for a bet or prediction market position. Outputs are arithmetic based on the probability estimate supplied by the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BET/PASS outputs may be mistaken for proof that gambling is safe, profitable, or advisable. <br>
-Mitigation: Treat outputs as arithmetic based on the user's probability estimate, review inputs before acting, and do not present results as gambling, financial, or legal advice. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate whether a sports bet or prediction market position is positive or negative EV, compare lines, and calculate breakeven probability from supported odds formats.
 
-## Reference(s): <br>
-- [Expected Value Calculator on ClawHub](https://clawhub.ai/rsquaredsolutions2026/agentbets-ev-calculator) <br>
-- [AgentBets](https://agentbets.ai) <br>
-- [OpenClaw EV Calculator Skill Guide](https://agentbets.ai/guides/openclaw-ev-calculator-skill/) <br>
-- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and numeric EV results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; calculations are local arithmetic over user-provided odds and probability inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Instructions place user-provided values into a shell command in a potentially unsafe way.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; validate numeric inputs and invoke Python with structured arguments, or perform the calculation directly without a shell command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rsquaredsolutions2026/skills/agentbets-ev-calculator)
+- [AgentBets EV Calculator Guide](https://agentbets.ai/guides/openclaw-ev-calculator-skill/)
+- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and calculated EV summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; calculations depend on user-provided odds and true-probability inputs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

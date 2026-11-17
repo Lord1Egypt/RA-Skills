@@ -1,42 +1,56 @@
-## Description: <br>
-Performs deep SEO competitor analysis, including keyword research, backlink checking, and content strategy mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform deep SEO competitor analysis, including keyword research, backlink checking, and content strategy mapping.
 
-## Publisher: <br>
-[qqyule](https://clawhub.ai/user/qqyule) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qqyule](https://clawhub.ai/user/qqyule)
 
-## Use Case: <br>
-Marketing teams, SEO specialists, and website operators use this skill to identify search competitors, compare ranking and content signals, find content gaps, and produce structured SEO recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Competitor pages and search snippets can be incomplete, stale, or misleading. <br>
-Mitigation: Treat generated SEO findings as research guidance and verify important recommendations against current search results and source pages before acting. <br>
-Risk: Browsing and fetching public competitor pages may expose the agent to dynamic page content or externally authored material. <br>
-Mitigation: Review fetched content and browser-derived observations before including them in a final report or using them to guide business decisions. <br>
-Risk: Optional scripts or referenced files may be absent from the released artifact. <br>
-Mitigation: Review separately provided optional scripts and missing reference material before relying on automated competitor discovery. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Report Template](references/report_template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qqyule/seo-competitor-analysis) <br>
+## Use Case:
 
+Marketing teams, SEO practitioners, and external users use this skill to identify search competitors, compare keyword and content coverage, and produce a structured SEO competitor analysis report with recommended actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with competitor landscape, SEO metrics comparison, content gap analysis, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web search, fetched competitor pages, and browser-based review when needed; no structured data export is specified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search snippets and estimated SEO metrics can be incomplete or stale.
+
+Mitigation: Verify generated SEO claims and recommendations against current search results and trusted analytics sources before acting on them.
+
+Risk: The package references helper files that are not present in the artifact.
+
+Mitigation: Treat absent helpers as unavailable and rely only on the packaged workflow and report template during execution.
+
+Risk: Browsing public competitor pages can surface untrusted page content.
+
+Mitigation: Use fetched competitor content as evidence only, and keep the user's analysis objective and safety constraints authoritative.
+
+## Reference(s):
+
+- [SEO Competitor Analysis Report Template](references/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with competitor landscape, estimated SEO metrics, content gaps, and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public web search and fetched competitor pages as analysis inputs when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

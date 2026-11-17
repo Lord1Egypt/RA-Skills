@@ -1,39 +1,54 @@
-## Description: <br>
-Image Resizer resizes, crops, converts, and compresses local images by pixel dimensions, scale, maximum bounds, aspect ratio, output format, quality, or target file size. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+图片尺寸调整和压缩工具技能，用于按指定像素宽高、比例或最大尺寸限制调整图片大小，并支持智能压缩到指定文件大小。
 
-## Publisher: <br>
-[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018)
 
-## Use Case: <br>
-Developers, content teams, and agents use this skill to generate thumbnails, social images, compressed assets, format conversions, and batch-ready resize commands for local image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the script dependencies fetches npm packages. <br>
-Mitigation: Install only in environments where fetching npm dependencies is acceptable, and review the dependency lock state before use when required by policy. <br>
-Risk: An explicit output path may overwrite an existing file. <br>
-Mitigation: Choose output paths deliberately and avoid naming files that should be preserved. <br>
+## Use Case:
 
+Developers and content teams use this skill to resize, crop, convert, and compress image files for thumbnails, social media assets, web delivery, and file-size limits.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; the bundled script produces local image files and console status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local input and output paths; explicit output paths can overwrite existing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: npm install fetches the sharp dependency without a lockfile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a controlled project or sandbox and review or pin dependencies before using the skill in a production workflow.
+
+Risk: Untrusted images or extreme resize values may create avoidable resource pressure.
+
+Mitigation: Avoid processing untrusted images and apply reasonable input size and dimension limits before running the script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuchubuzai2018/skills/image-resizer)
+- [Publisher profile](https://clawhub.ai/user/wuchubuzai2018)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated local image files from the bundled Node.js script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can write resized, cropped, converted, or compressed image files to a requested output path.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

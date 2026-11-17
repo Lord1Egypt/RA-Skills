@@ -96,7 +96,7 @@ cat > ~/.openclaw/agents/free-agent/agent/auth-profiles.json <<'EOF'
     "openrouter:default": {
       "type": "api_key",
       "provider": "openrouter",
-      "key": "sk-or-v1-YOUR_OPENROUTER_KEY"
+      "key": "REDACTED-SECRET"
     }
   },
   "lastGood": {

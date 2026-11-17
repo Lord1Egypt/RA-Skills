@@ -1,43 +1,63 @@
-## Description: <br>
-Use xapi CLI to access real-time external data, including Twitter/X profiles, tweets, timelines, crypto token prices and metadata, web search, news, and AI text processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use xapi CLI to access real-time external data including Twitter/X profiles, tweets, timelines, crypto token prices and metadata, web search, news, and AI text processing.
 
-## Publisher: <br>
-[Glacier-Luo](https://clawhub.ai/user/Glacier-Luo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glacier-luo](https://clawhub.ai/user/glacier-luo)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover and call xapi CLI capabilities for external data lookups, API proxy calls, OAuth-bound Twitter/X actions, crypto data retrieval, web or news search, and AI text processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize broad external API access, including social posting, OAuth-bound actions, account registration, and payment top-ups. <br>
-Mitigation: Require explicit user approval before OAuth binding, POST, DELETE, write, Twitter posting, registration, or top-up actions. <br>
-Risk: The xapi API key and payment URLs may expose account authority if logged or shared. <br>
-Mitigation: Keep XAPI_API_KEY and local xapi config private, and avoid logging or sharing payment URLs or credentials. <br>
-Risk: External processing may expose secrets or sensitive documents to third-party services. <br>
-Mitigation: Send sensitive content through xapi only when external processing is acceptable for the user's context. <br>
+## Use Case:
 
+Developers and external agents use this skill to call xapi from the command line for real-time social, crypto, web, news, AI text, and third-party API data. The skill guides agents to discover actions, inspect schemas, pass JSON inputs, and handle authentication or OAuth requirements.
 
-## Reference(s): <br>
-- [xAPI homepage](https://xapi.to) <br>
-- [ClawHub skill page](https://clawhub.ai/Glacier-Luo/xapi-labs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON API responses] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON command inputs or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and an XAPI_API_KEY or xapi account configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can route user data to external APIs and AI text services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive documents or secrets unless external transmission is intended and approved.
+
+Risk: OAuth-backed actions can authorize write operations such as posting tweets.
+
+Mitigation: Require explicit user confirmation before OAuth binding or any write-capable action.
+
+Risk: The npx entrypoint may execute an unpinned package version.
+
+Mitigation: Pin or preinstall a reviewed xapi-to version in restricted environments.
+
+Risk: API keys, top-up URLs, and ~/.xapi/config.json contain sensitive credentials.
+
+Mitigation: Keep these values out of logs and share them only with approved xapi.to domains.
+
+## Reference(s):
+
+- [xAPI homepage](https://xapi.to)
+- [ClawHub skill page](https://clawhub.ai/glacier-luo/skills/xapi-labs)
+- [ClawHub publisher profile](https://clawhub.ai/user/glacier-luo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command inputs or responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx and an XAPI_API_KEY or xapi account configuration; xapi command output is JSON by default.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

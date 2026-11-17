@@ -1,41 +1,54 @@
-## Description: <br>
-Expressive Soul provides a Chinese-language expression framework for insight, persuasion, and direct response style, with scheduled daily review and memory anchoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expressive Soul guides an agent to answer with a forceful Chinese expression framework and maintain daily local reflection logs and insights.
 
-## Publisher: <br>
-[chenye1313](https://clawhub.ai/user/chenye1313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chenye1313](https://clawhub.ai/user/chenye1313)
 
-## Use Case: <br>
-External users and developers use this skill to shape agent replies with a direct, insight-driven expression framework and to review prior conversation-derived judgments through local daily logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save conversation payloads to persistent local files after AI replies. <br>
-Mitigation: Use only where local conversation logging is acceptable; avoid secrets, credentials, personal data, and confidential work unless logging is disabled or the memory files are inspected and deleted. <br>
-Risk: Scheduled daily review may process accumulated conversation logs without clear retention limits. <br>
-Mitigation: Review the handler and schedule before deployment, set retention expectations, and remove local memory directories when they are no longer needed. <br>
+## Use Case:
 
+External users can use this skill to shape Chinese-language agent responses around insight, emotional force, and direct expression. It also supports daily review workflows that summarize logged conversation activity into local memory and insight files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenye1313/expressive-soul) <br>
-- [Publisher Profile](https://clawhub.ai/user/chenye1313) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local JSONL memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent local JSONL files under memory/daily and memory/insights when hooks or review scripts run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill automatically shapes responses into a Chinese expression style, which may be inappropriate for conversations that need neutral tone or strict user-specific style control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this response posture is desired, and disable or modify the skill for chats that require neutral drafting.
+
+Risk: The security evidence reports plaintext local retention of full conversation payloads without clear opt-in, redaction, retention, or deletion controls.
+
+Mitigation: Avoid use with credentials, personal data, private code, business secrets, or regulated information unless logging is disabled or changed to store only approved, redacted summaries with deletion and retention controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenye1313/skills/expressive-soul)
+- [Publisher profile](https://clawhub.ai/user/chenye1313)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSONL memory and insight files when the hook or review scripts run.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, frontmatter, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

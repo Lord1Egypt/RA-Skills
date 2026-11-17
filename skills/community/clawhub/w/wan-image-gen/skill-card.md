@@ -1,41 +1,57 @@
-## Description: <br>
-Generates images with Alibaba Cloud Model Studio's Wan text-to-image API, including asynchronous task submission, status polling, and local image downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+wan-image-gen uses Alibaba Cloud Model Studio DashScope Wan image generation models to submit text-to-image jobs, poll task status, and download generated images locally.
 
-## Publisher: <br>
-[zhouweico](https://clawhub.ai/user/zhouweico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouweico](https://clawhub.ai/user/zhouweico)
 
-## Use Case: <br>
-Developers and agents use this skill to generate images from prompts through DashScope Wan models, test low-cost drafts, poll existing tasks, and save generated images locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouweico/wan-image-gen) <br>
-- [Wan Image Generation API Notes](references/api.md) <br>
-- [Alibaba Cloud Model Studio text-to-image v2 API reference](https://help.aliyun.com/zh/model-studio/text-to-image-v2-api-reference) <br>
-- [Alibaba Cloud Model Studio text-to-image guide](https://help.aliyun.com/zh/model-studio/text-to-image) <br>
-- [Alibaba Cloud Model Studio regions](https://help.aliyun.com/zh/model-studio/regions/) <br>
+Developers and agents use this skill to generate images from text prompts, choose cost or quality tiers, run dry-run request previews, poll existing image-generation tasks, and save completed PNG outputs.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, files] <br>
-**Output Format:** [CLI text output, dry-run JSON, and downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >= 18 and DASHSCOPE_API_KEY; sends prompts and request details to Alibaba Cloud DashScope and writes generated images to the selected output directory.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence; package.json reports 0.1.0) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: A changed baseUrl, DASHSCOPE_BASE_URL, or config.json can cause the DashScope API key to be sent to an unintended endpoint.
+
+Mitigation: Keep the base URL pinned to the legitimate DashScope endpoint, prefer DASHSCOPE_API_KEY from the environment, and avoid letting untrusted projects write config.json or environment variables.
+
+Risk: Generated image URLs are downloaded as remote files without independent content validation.
+
+Mitigation: Run the skill in a network- and disk-limited workspace, store outputs in a dedicated directory, and review downloaded files before reuse.
+
+## Reference(s):
+
+- [Wan Image Generation API Notes](references/api.md)
+- [Alibaba Cloud Model Studio Text-to-Image V2 API](https://help.aliyun.com/zh/model-studio/text-to-image-v2-api-reference)
+- [Alibaba Cloud Model Studio Text-to-Image](https://help.aliyun.com/zh/model-studio/text-to-image)
+- [Alibaba Cloud Model Studio Regions](https://help.aliyun.com/zh/model-studio/regions/)
+- [ClawHub skill page](https://clawhub.ai/zhouweico/skills/wan-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands; runtime output is plain text, dry-run JSON, task identifiers, file paths, and PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >=18 and DASHSCOPE_API_KEY; supports prompt, model, tier, goal, ratio, size, seed, polling, timeout, and output directory options.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

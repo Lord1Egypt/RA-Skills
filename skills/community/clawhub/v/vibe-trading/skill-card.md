@@ -1,44 +1,61 @@
-## Description: <br>
-Professional finance research toolkit for agent-assisted backtesting, factor analysis, options analysis, market data retrieval, trade-journal analysis, shadow-account research, and multi-agent investment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A finance research toolkit for strategy backtesting, factor and options analysis, market data, trade-journal insights, and research workflows.
 
-## Publisher: <br>
-[warren618](https://clawhub.ai/user/warren618) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[warren618](https://clawhub.ai/user/warren618)
 
-## Use Case: <br>
-External developers, researchers, and finance-focused agent users use this skill to connect an agent to research workflows for market data, backtests, factor analysis, options analysis, trading-journal diagnostics, and generated research reports. Broker connectors, local journals, credentials, and external MCP servers should be used only when the operator trusts those inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle sensitive trading data, broker account views, OAuth profiles, local journal files, and finance credentials. <br>
-Mitigation: Connect only trusted broker accounts, OAuth profiles, local journals, and external MCP servers; review optional credentials and ~/.vibe-trading configuration before use. <br>
-Risk: Market data, backtests, strategy reports, and shadow-account outputs can be incomplete, stale, or unsuitable for live trading decisions. <br>
-Mitigation: Treat outputs as research support, validate source data and assumptions, and review generated strategies or reports before relying on them. <br>
-Risk: External MCP server configuration may extend the agent's tool surface and expose additional data paths. <br>
-Mitigation: Use external MCP servers only from trusted operators, keep tool allowlists narrow, and avoid enabling session-level MCP injection unless the deployment explicitly requires it. <br>
+## Use Case:
 
+Developers and quantitative researchers can use the agent to explore market data, analyze strategies and factors, backtest ideas, review trade journals, and produce research reports or strategy artifacts.
 
-## Reference(s): <br>
-- [Vibe Trading on ClawHub](https://clawhub.ai/warren618/vibe-trading) <br>
-- [Publisher profile: warren618](https://clawhub.ai/user/warren618) <br>
-- [Interactive Brokers MCP API endpoint](https://api.ibkr.com/v1/api/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, text, JSON-like tool outputs, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce research reports, backtest metrics, generated strategy files, market-data summaries, and broker-readiness guidance depending on the invoked tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.10 (source: frontmatter and server release evidence) <br>
+Risk: Saved brokerage credentials and confidential research could be exposed if handled carelessly or shared with unapproved model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect saved credentials and use an approved model provider before supplying confidential research to swarm workers.
+
+Risk: Session MCP injection or direct trade-writing tools can grant broader tool access than intended.
+
+Mitigation: Keep session MCP injection and direct trade-writing tools disabled unless deliberately authorized; start with research or paper/read-only connections.
+
+Risk: The external Python package was not audited, so instruction-level scan results do not establish runtime enforcement.
+
+Mitigation: Review the package and its runtime controls before relying on them for brokerage or other sensitive workflows.
+
+## Reference(s):
+
+- [Vibe Trading on ClawHub](https://clawhub.ai/warren618/skills/vibe-trading)
+- [Publisher profile](https://clawhub.ai/user/warren618)
+- [Gildata DataMap](https://www.gildata.com/products/datamap)
+- [IBKR public MCP endpoint](https://api.ibkr.com/v1/api/mcp-public)
+- [eToro Public API MCP](https://mcp.public-api.etoro.com)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Code, Configuration, Markdown, HTML/PDF reports]
+
+**Output Format:** [Markdown guidance and analysis, strategy code and configuration files, and generated HTML/PDF reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include backtest metrics, market research, factor analysis, options calculations, and trade-journal summaries.]
+
+## Skill Version(s):
+
+0.1.19 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

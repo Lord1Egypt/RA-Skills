@@ -1,47 +1,56 @@
-## Description: <br>
-DexScan Skill retrieves on-chain crypto market data, including token market metrics, signal rankings, social heat, KOL activity, wallet analytics, and smart-money leaderboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DexScan Skill helps an agent retrieve on-chain market data, including token prices and details, token signals, social heat, and smart-money address data.
 
-## Publisher: <br>
-[yishixing01](https://clawhub.ai/user/yishixing01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yishixing01](https://clawhub.ai/user/yishixing01)
 
-## Use Case: <br>
-External users and developers use this skill to query DexScan for token prices, market rankings, on-chain trading activity, social heat, signal data, and wallet-level analytics across supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds shared DexScan API credentials as defaults. <br>
-Mitigation: Configure DS_ACCESS_KEY and DS_SECRET_KEY with your own credentials before use and avoid relying on the embedded defaults. <br>
-Risk: DexScan queries are sent to an external service. <br>
-Mitigation: Use the skill only when sending the requested token, address, and market queries to DexScan is acceptable. <br>
-Risk: Wallet analytics can surface detailed address, PnL, transaction, tag, and source-of-funds data. <br>
-Mitigation: Enable wallet-level analytics only for legitimate analysis where this profiling data is appropriate to process and display. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent query DexScan for token rankings, token details, market activity, K-line history, address PnL, portfolio holdings, and smart-money leaderboards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yishixing01/dexscan-skill) <br>
-- [Token signal API reference](references/signal.md) <br>
-- [Market API reference](references/market.md) <br>
-- [Address API reference](references/address.md) <br>
-- [Address ranking API reference](references/address-rank.md) <br>
-- [Social heat API reference](references/heat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown summaries with formatted DexScan API response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formats timestamps, numeric values, percentages, pagination prompts, and API error messages for user-facing responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: DexScan credentials may be loaded from .env files in parent directories, which can use keys not intended for this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated directory tree without unrelated .env files, or require credential loading to use only explicit environment variables or a fixed skill-local .env file.
+
+Risk: Token, wallet, and tweet queries are sent to DexScan with the configured DexScan API credentials.
+
+Mitigation: Use credentials approved for DexScan requests and avoid submitting sensitive token, wallet, or tweet queries unless that sharing is acceptable.
+
+## Reference(s):
+
+- [DexScan OpenAPI](https://openapi.dexscan.trade)
+- [Token API Reference](references/coin.md)
+- [Address API Reference](references/address.md)
+- [Market API Reference](references/market.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or structured text summarizing DexScan API results, with JSON-like fields from DexScan responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formats time and numeric fields; paginated endpoints may include cursor continuation prompts.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

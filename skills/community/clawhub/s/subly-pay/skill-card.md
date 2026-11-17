@@ -1,43 +1,57 @@
-## Description: <br>
-Fetch a paywalled HTTP 402 URL and pay for it automatically from the agent wallet's Kamino vault yield, without spending the principal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches paywalled HTTP 402 resources by automatically settling x402 Solana USDC payments from an agent wallet's Kamino vault yield, and helps manage the related Subly vault and owner approval flow.
 
-## Publisher: <br>
-[yukikm](https://clawhub.ai/user/yukikm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yukikm](https://clawhub.ai/user/yukikm)
 
-## Use Case: <br>
-Developers and agents use this skill to access user-approved paid HTTP resources served through Subly or x402. It guides wallet setup, enforces payment caps, and reports delivered content with payment receipt details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Solana wallet keypair path and requires sensitive credential handling. <br>
-Mitigation: Do not read, print, transmit, or expose the keypair file contents; only share public receipt information. <br>
-Risk: The skill can initiate payments for paywalled resources. <br>
-Mitigation: Only pay for URLs the user intends to purchase, treat the configured cap as a hard limit, and increase the cap only after user confirmation. <br>
-Risk: A previous payment may be pending or unresolved. <br>
-Mitigation: Follow the command result reason: retry only when delivery failed with payment pending, and report unresolved payment IDs instead of blindly paying again. <br>
+## Use Case:
 
+External users and developers use this skill to fetch paid x402 resources, manage a Subly-funded payment vault, and route owner approvals for deposits or higher-value payments.
 
-## Reference(s): <br>
-- [Subly payment protocol](https://github.com/SublyFi/subly-payment-protocol) <br>
-- [ClawHub skill page](https://clawhub.ai/yukikm/subly-pay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The payment command returns a single JSON object that may include delivered content, payment amount, recipient, payment ID, and receipt URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can automatically spend from a crypto wallet using a downloaded client that is not pinned to a reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, low-balance wallet; keep the payment cap low; confirm every paid URL and price; and prefer a pinned or otherwise verified version of `@subly_fi/pay` before wallet-affecting commands.
+
+Risk: Payment and deposit flows can move funds or require owner approvals.
+
+Mitigation: Do not raise caps without user confirmation, paste approval links exactly as printed, and verify setup or approval status before claiming that an approval occurred.
+
+Risk: The configured keypair path points to private wallet material.
+
+Mitigation: Never read, print, or transmit the keypair file contents; share only public receipts or public wallet information when needed.
+
+## Reference(s):
+
+- [Subly payment protocol](https://github.com/SublyFi/subly-payment-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON result interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, and SUBLY_DEMO_AGENT_KEYPAIR_PATH; payment commands can affect a Solana wallet and should use low caps.]
+
+## Skill Version(s):
+
+0.2.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

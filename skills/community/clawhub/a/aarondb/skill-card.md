@@ -1,41 +1,55 @@
-## Description: <br>
-Distributed Datalog engine for sovereign agents that provides persistent fact management, querying, reasoning, and optional synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distributed Datalog engine guidance for sovereign agents, enabling persistent fact management, querying, reasoning, and synchronization patterns.
 
-## Publisher: <br>
-[criticalinsight](https://clawhub.ai/user/criticalinsight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[criticalinsight](https://clawhub.ai/user/criticalinsight)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local or distributed Datalog-backed fact storage and querying to agents that need persistent, immutable state and reasoning over stored facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent fact storage and optional synchronization can retain or share sensitive, credential-like, or unreviewed facts. <br>
-Mitigation: Decide what facts are safe to persist or synchronize, and avoid storing secrets, credentials, or unreviewed instructions as reusable database facts. <br>
-Risk: The skill depends on an external npm package and referenced repository that should be trusted before installation. <br>
-Mitigation: Verify the npm package and repository before installing, and pin a trusted package version. <br>
+## Use Case:
 
+Developers and agent builders use this skill to help agents install and apply AaronDB Edge for immutable Datalog fact storage, retrieval, reasoning, and cross-agent synchronization workflows.
 
-## Reference(s): <br>
-- [Aarondb ClawHub page](https://clawhub.ai/criticalinsight/aarondb) <br>
-- [@criticalinsight/aarondb-edge npm package](https://www.npmjs.com/package/@criticalinsight/aarondb-edge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes guidance for persistent fact storage and optional synchronization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill installs an unpinned external npm package, so install-time behavior may change as the package evolves.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the @criticalinsight/aarondb-edge package version before installation, preferably in a least-privileged environment.
+
+Risk: Persisted or synchronized facts may contain sensitive, stale, or incorrect agent state.
+
+Mitigation: Be deliberate about which facts are stored or synchronized, review persisted data, and apply appropriate access controls for shared back ends.
+
+## Reference(s):
+
+- [Aarondb on ClawHub](https://clawhub.ai/criticalinsight/skills/aarondb)
+- [@criticalinsight/aarondb-edge npm package](https://www.npmjs.com/package/@criticalinsight/aarondb-edge)
+- [aarondb-edge repository](https://github.com/criticalinsight/aarondb-edge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides use of an external npm package and Datalog fact-management patterns.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

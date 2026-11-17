@@ -1,40 +1,57 @@
-## Description: <br>
-Create hand-drawn style Excalidraw diagrams, flowcharts, and architecture visuals as PNG images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create hand-drawn style Excalidraw diagrams, flowcharts, and architecture visuals as PNG images.
 
-## Publisher: <br>
-[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8)
 
-## Use Case: <br>
-Developers, designers, and technical communicators use this skill to generate Excalidraw-style diagrams, flowcharts, and architecture visuals from JSON element definitions and render them as PNG files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires local Node.js execution and setup downloads. <br>
-Mitigation: Review setup.sh in restricted environments and run setup or rendering without privileged permissions. <br>
-Risk: Rendering workflows that use arbitrary filenames can create avoidable file-handling risk. <br>
-Mitigation: Use fixed, simple temporary filenames rather than user-supplied names. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Excalidraw Element Schema Reference](references/element-schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/plgonzalezrx8/excalidraw-creator) <br>
+## Use Case:
 
+Developers and agents use this skill to create hand-drawn style diagrams, flowcharts, and architecture visuals by producing Excalidraw-compatible JSON and rendering it to PNG images.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands] <br>
-**Output Format:** [Excalidraw JSON and PNG image files with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Node.js renderer to convert Excalidraw element arrays into PNG images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup installs npm packages and downloads font assets before local rendering.
+
+Mitigation: Run setup in an isolated environment, review the package lock file, and avoid elevated privileges.
+
+Risk: Downloaded font assets are not hash-verified by the setup script.
+
+Mitigation: Verify downloaded assets independently or provide trusted local font files before production use.
+
+Risk: Shared-machine setup has predictable /tmp usage during Cascadia font extraction.
+
+Mitigation: Run setup as an unprivileged user in a controlled workspace or use a revised setup flow with safer temporary paths.
+
+## Reference(s):
+
+- [Excalidraw Element Schema Reference](references/element-schema.md)
+- [ClawHub skill page](https://clawhub.ai/plgonzalezrx8/skills/excalidraw-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands; PNG image files from rendered Excalidraw JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The renderer accepts an .excalidraw JSON file or standard input and writes a PNG output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, scripts/package.json, scripts/package-lock.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
